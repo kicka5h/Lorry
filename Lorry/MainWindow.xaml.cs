@@ -24,5 +24,26 @@ namespace Lorry
             _mainViewModel.LoadRecents();
             uxRecentPoem.DataContext = MainViewModel.Recents;
         }
+
+        public void uxButtonGenerateCouplet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void uxButtonGenerateHaiku_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void uxButtonViewCouplets_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void uxButtonViewHaikus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
