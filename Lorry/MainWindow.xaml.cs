@@ -30,11 +30,6 @@ namespace Lorry
 
         }
 
-        public void uxButtonGenerateHaiku_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         public void uxButtonViewCouplets_Click(object sender, RoutedEventArgs e)
         {
 

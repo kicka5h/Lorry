@@ -17,9 +17,21 @@ namespace Lorry
     /// </summary>
     public partial class HaikuWindow : Events
     {
+        private Lorry.Haikus.HaikuListViewModel _haikuViewModel = new Lorry.Haikus.HaikuListViewModel();
+
         public HaikuWindow()
         {
             InitializeComponent();
+            this.DataContext = HaikuViewModel;
+            uxList.ItemsSource = HaikuViewModel.Haikus;
+        }
+
+        public new Lorry.Haikus.HaikuListViewModel HaikuViewModel { get { return _haikuViewModel; } }
+
+        private void uxFileReload_Click(object sender, RoutedEventArgs e)
+        {
+            _haikuViewModel.LoadHaikus();
+            uxList.ItemsSource = HaikuViewModel.Haikus;
         }
     }
 }
