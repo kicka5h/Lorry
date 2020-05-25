@@ -1,0 +1,51 @@
+﻿<src:Events x:Class="Lorry.CoupletWindow"
+    xmlns:src="clr-namespace:Lorry"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+            
+        mc:Ignorable="d"
+        Title="Couplet" Height="450" Width="800">
+
+    
+    <StackPanel x:Name="uxPanel">
+        <Menu>
+            <MenuItem x:Name="uxFile" Header="_File" Loaded="uxFile_Loaded">
+                <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click">
+                    <MenuItem x:Name="uxFileNewHaiku" Header="_Haiku" Click="uxFileNewHaiku_Click"/>
+                    <MenuItem x:Name="uxFileNewCouplet" Header="_Couplet" Click="uxFileNewCouplet_Click"/>
+                    <MenuItem x:Name="uxFileNewFreeForm" Header="_Free Form" Click="uxFileNewFreeForm_Click"/>
+                    <Separator/>
+                    <MenuItem x:Name="uxFileReload" Header="_Reload Couplets" Click="uxFileReload_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="uxFileOpen" Header="_Open" Click="uxFileOpen_Click"/>
+                <MenuItem x:Name="uxFileExit" Header="_Exit" Click="uxFileExit_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="uxEdit" Header="_Edit" Loaded="uxEdit_Loaded">
+                <MenuItem x:Name="uxEditAdd" Header="_Add" Click="uxEditAdd_Click">
+                    <MenuItem x:Name="uxEditAddHaiku" Header="_Haiku" Click="uxEditAddHaiku_Click"/>
+                    <MenuItem x:Name="uxEditAddCouplet" Header="_Couplet" Click="uxEditAddCouplet_Click">
+                        <MenuItem x:Name="uxEditAddCoupletRhyme" Header="_Add Rhyme" Click="uxEditAddCoupletRhyme_Click"/>
+                    </MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="uxHelp" Header="_Help" Loaded="uxHelp_Loaded"/>
+        </Menu>
+
+        <Button x:Name="uxGenerateCouplet" Content="Generate!" Click="uxGenerateCouplet_Click"/>
+
+        <ListView x:Name="uxList">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Possible Lines" DisplayMemberBinding="{Binding CoupletContent}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </StackPanel>
+
+</src:Events>
