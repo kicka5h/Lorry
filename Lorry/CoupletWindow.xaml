@@ -15,6 +15,7 @@
     <StackPanel x:Name="uxPanel">
         <Menu>
             <MenuItem x:Name="uxFile" Header="_File" Loaded="uxFile_Loaded">
+                <MenuItem x:Name="uxFileDashboard" Header="_Dashboard" Click="uxFileDashboard_Click"/>
                 <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click">
                     <MenuItem x:Name="uxFileNewHaiku" Header="_Haiku" Click="uxFileNewHaiku_Click"/>
                     <MenuItem x:Name="uxFileNewCouplet" Header="_Couplet" Click="uxFileNewCouplet_Click"/>
@@ -36,12 +37,12 @@
             <MenuItem x:Name="uxHelp" Header="_Help" Loaded="uxHelp_Loaded"/>
         </Menu>
 
-        <Button x:Name="uxGenerateCouplet" Content="Generate!" Click="uxGenerateCouplet_Click"/>
+        <Button x:Name="uxGenerateCouplet" Content="Generate!" Click="uxGenerateCouplet_Click" Width="124"/>
 
-        <ListView x:Name="uxList">
+        <ListView x:Name="uxList" Width="378">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Possible Lines" DisplayMemberBinding="{Binding CoupletContent}" />
+                    <GridViewColumn Header="Possible Lines" DisplayMemberBinding="{Binding CoupletContent}"/>
                 </GridView>
             </ListView.View>
         </ListView>

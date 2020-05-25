@@ -39,6 +39,15 @@ namespace Lorry
 
         }
 
+        public void uxFileDashboard_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = new MainWindow();
+            Application.Current.MainWindow = mainWindow;
+            mainWindow.Show();
+
+            this.Close();
+        }
+
         public void uxFileNewHaiku_Click(object sender, RoutedEventArgs e)
         {
             var haikuWindow = new HaikuWindow();
@@ -112,7 +121,12 @@ namespace Lorry
             this.DataContext = _coupletViewModel;
 
             List<Lorry.Couplets.Couplet> coupletList = CoupletViewModel.Couplets.ToList();
-            Couplet randomCouplet = coupletList.RandomElement();
+
+            Couplet randomCouplet = null;
+            for (int i = 0; i <= 10; i++)
+            {
+                randomCouplet = coupletList.RandomElement();
+            }
 
             MessageBox.Show(randomCouplet.CoupletContent);
         }

@@ -11,6 +11,7 @@
     <StackPanel>
         <Menu>
             <MenuItem x:Name="uxFile" Header="_File" Loaded="uxFile_Loaded">
+                <MenuItem x:Name="uxFileDashboard" Header="_Dashboard" Click="uxFileDashboard_Click"/>
                 <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click">
                     <MenuItem x:Name="uxFileNewHaiku" Header="_Haiku" Click="uxFileNewHaiku_Click"/>
                     <MenuItem x:Name="uxFileNewCouplet" Header="_Couplet" Click="uxFileNewCouplet_Click"/>
@@ -30,11 +31,11 @@
             <MenuItem x:Name="uxHelp" Header="_Help" Loaded="uxHelp_Loaded"/>
         </Menu>
 
-        <Label x:Name="uxRecentLabel" FontWeight="Bold" FontSize="17"  Content="Recent" Loaded="uxRecentLabel_Loaded"/>
-        
-        <Label x:Name="uxRecentDate" Content="{Binding RecentDate}" />
-        
-        <Label x:Name="uxRecentPoem" Content="{Binding RecentContent}" />
+        <Label x:Name="uxRecentLabel" FontWeight="Bold" FontSize="17"  Content="Recent" Loaded="uxRecentLabel_Loaded" Width="303"/>
+
+        <Label x:Name="uxRecentDate" Content="{Binding RecentDate}" Height="7" Width="295" />
+
+        <Label x:Name="uxRecentPoem" Content="{Binding RecentContent}" Width="392" />
     </StackPanel>
 
 </src:Events>
