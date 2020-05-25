@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Lorry.Repository\Lorry.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Haikus\" />
-  </ItemGroup>
-
 </Project>

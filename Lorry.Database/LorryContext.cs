@@ -16,6 +16,7 @@ namespace Lorry.Database
         }
 
         public virtual DbSet<Couplet> Couplet { get; set; }
+        public virtual DbSet<Haiku> Haiku { get; set; }
         public virtual DbSet<Recent> Recent { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -34,6 +35,15 @@ namespace Lorry.Database
                 entity.Property(e => e.CoupletContent).HasMaxLength(120);
 
                 entity.Property(e => e.CoupletRhyme).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Haiku>(entity =>
+            {
+                entity.Property(e => e.HaikuContent)
+                    .IsRequired()
+                    .HasMaxLength(150);
+
+                entity.Property(e => e.HaikuCount).HasMaxLength(50);
             });
 
             modelBuilder.Entity<Recent>(entity =>
