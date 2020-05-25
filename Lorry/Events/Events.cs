@@ -29,6 +29,26 @@ namespace Lorry
         private Lorry.Couplets.CoupletListViewModel _coupletViewModel = new Lorry.Couplets.CoupletListViewModel();
         public Lorry.Couplets.CoupletListViewModel CoupletViewModel { get { return _coupletViewModel; } }
 
+        public void uxButtonGenerateCouplet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void uxButtonGenerateHaiku_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void uxButtonViewCouplets_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void UxButtonViewHaikus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         public void uxFile_Loaded(object sender, RoutedEventArgs e)
         {
 

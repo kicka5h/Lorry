@@ -8,14 +8,13 @@
         mc:Ignorable="d"
         Title="Lorry" Height="450" Width="800">
 
-    <StackPanel>
-        <Menu>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
             <MenuItem x:Name="uxFile" Header="_File" Loaded="uxFile_Loaded">
                 <MenuItem x:Name="uxFileDashboard" Header="_Dashboard" Click="uxFileDashboard_Click"/>
                 <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click">
                     <MenuItem x:Name="uxFileNewHaiku" Header="_Haiku" Click="uxFileNewHaiku_Click"/>
                     <MenuItem x:Name="uxFileNewCouplet" Header="_Couplet" Click="uxFileNewCouplet_Click"/>
-                    <MenuItem x:Name="uxFileNewFreeForm" Header="_Free Form" Click="uxFileNewFreeForm_Click"/>
                 </MenuItem>
                 <MenuItem x:Name="uxFileOpen" Header="_Open" Click="uxFileOpen_Click"/>
                 <MenuItem x:Name="uxFileExit" Header="_Exit" Click="uxFileExit_Click"/>
@@ -24,18 +23,29 @@
                 <MenuItem x:Name="uxEditAdd" Header="_Add" Click="uxEditAdd_Click">
                     <MenuItem x:Name="uxEditAddHaiku" Header="_Haiku" Click="uxEditAddHaiku_Click"/>
                     <MenuItem x:Name="uxEditAddCouplet" Header="_Couplet" Click="uxEditAddCouplet_Click">
-                        <MenuItem x:Name="uxEditAddCoupletRhyme" Header="_Add Rhyme" Click="uxEditAddCoupletRhyme_Click"/>
                     </MenuItem>
                 </MenuItem>
             </MenuItem>
             <MenuItem x:Name="uxHelp" Header="_Help" Loaded="uxHelp_Loaded"/>
         </Menu>
 
-        <Label x:Name="uxRecentLabel" FontWeight="Bold" FontSize="17"  Content="Recent" Loaded="uxRecentLabel_Loaded" Width="303"/>
+        <StackPanel DockPanel.Dock="Left">
+            <Button x:Name="uxButtonGenerateCouplet" Content="Generate Couplet" Click="uxButtonGenerateCouplet_Click" Width="155"/>
+            <Separator Margin="5"/>
+            <Button x:Name="uxButtonGenerateHaiku" Content="Generate Haiku" Click="uxButtonGenerateHaiku_Click" Width="155"/>
+            <Separator Margin="100" />
+            <Button x:Name="uxButtonViewCouplets" Content="View Couplets" Click="uxButtonViewCouplets_Click" Width="155"/>
+            <Separator Margin="5"/>
+            <Button x:Name="uxButtonViewHaikus" Content="View Haikus" Click="uxButtonViewHaikus_Click" Width="155"/>
+        </StackPanel>
 
-        <Label x:Name="uxRecentDate" Content="{Binding RecentDate}" Height="7" Width="295" />
+        <StackPanel DockPanel.Dock="Bottom">
+            <Label x:Name="uxRecentLabel" FontWeight="Bold" FontSize="18" Content="Recent" Loaded="uxRecentLabel_Loaded" Width="95"/>
 
-        <Label x:Name="uxRecentPoem" Content="{Binding RecentContent}" Width="392" />
-    </StackPanel>
+            <Expander x:Name="uxExpanderRecent" Width="315">
+                <Label x:Name="uxRecentPoem" Content="{Binding RecentContent}" Width="315"/>
+            </Expander>
 
+        </StackPanel>
+    </DockPanel>
 </src:Events>
