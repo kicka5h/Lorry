@@ -1,4 +1,4 @@
-﻿<src:EventHandlers x:Class="Lorry.MainWindow"
+﻿<src:Events x:Class="Lorry.MainWindow"
     xmlns:src="clr-namespace:Lorry"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -48,4 +48,4 @@
 
         </StackPanel>
     </DockPanel>
-</src:EventHandlers>
+</src:Events>
