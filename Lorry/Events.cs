@@ -1,4 +1,5 @@
 ﻿using Lorry.Couplets;
+using Lorry.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Windows;
 
 namespace Lorry
 {
-    public static class CollectionExtension
+    public static class CoupletCollectionExtension
     {
         private static Random rng = new Random();
 
@@ -28,6 +29,21 @@ namespace Lorry
     {
         private Lorry.Couplets.CoupletListViewModel _coupletViewModel = new Lorry.Couplets.CoupletListViewModel();
         public Lorry.Couplets.CoupletListViewModel CoupletViewModel { get { return _coupletViewModel; } }
+
+        public void uxButtonGenerateCouplet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void uxButtonViewCouplets_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void uxButtonViewHaikus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         public void uxButtonGenerateHaiku_Click(object sender, RoutedEventArgs e)
         {
@@ -123,16 +139,7 @@ namespace Lorry
 
         public void uxGenerateCouplet_Click(object sender, RoutedEventArgs e)
         {
-            this.DataContext = _coupletViewModel;
-
-            List<Lorry.Couplets.Couplet> coupletList = CoupletViewModel.Couplets.ToList();
-
-            Couplet randomCouplet = null;
-            for (int i = 0; i <= 10; i++)
-            {
-                randomCouplet = coupletList.RandomElement();
-            }
-
+            Couplet randomCouplet = GenerateRandom.GenerateCouplet;
             MessageBox.Show(randomCouplet.CoupletContent);
         }
     }

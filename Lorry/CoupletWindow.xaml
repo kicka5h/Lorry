@@ -37,10 +37,18 @@
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Left">
+            <Separator Margin="5"/>
             <Button x:Name="uxGenerateCouplet" Content="Generate!" Click="uxGenerateCouplet_Click" Width="155"/>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Right">
+            <Label x:Name="uxRecentCoupletLabel" Content="Recent" FontWeight="Bold" FontSize="18" Width="95" />
+
+            <Expander x:Name="uxExpanderRecentCoupletWindow" Width="315">
+                <Label x:Name="uxCoupletRecent"  Content="{Binding RecentContent}" Width="315"/>
+            </Expander>
+            
+            <Separator Margin="5"/>
             <Label x:Name="uxPossibleLinesLabel" Content="Possible Lines" Width="95" />
             <Expander Width="315">
                 <ListView x:Name="uxList" Width="315">
@@ -51,6 +59,8 @@
                     </ListView.View>
                 </ListView>
             </Expander>
+
         </StackPanel>
+        
     </DockPanel>
 </src:Events>

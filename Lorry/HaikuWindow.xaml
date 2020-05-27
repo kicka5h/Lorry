@@ -7,47 +7,48 @@
         mc:Ignorable="d"
         Title="Haiku" Height="450" Width="800">
 
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Top">
-            <Menu>
-                <MenuItem x:Name="uxFile" Header="_File" Loaded="uxFile_Loaded">
-                    <MenuItem x:Name="uxFileDashboard" Header="_Dashboard" Click="uxFileDashboard_Click"/>
-                    <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click">
-                        <MenuItem x:Name="uxFileNewHaiku" Header="_Haiku" Click="uxFileNewHaiku_Click"/>
-                        <MenuItem x:Name="uxFileNewCouplet" Header="_Couplet" Click="uxFileNewCouplet_Click"/>
-                        <Separator/>
-                        <MenuItem x:Name="uxFileReload" Header="_Reload Couplets" Click="uxFileReload_Click"/>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top">
+                <Menu>
+                    <MenuItem x:Name="uxFile" Header="_File" Loaded="uxFile_Loaded">
+                        <MenuItem x:Name="uxFileDashboard" Header="_Dashboard" Click="uxFileDashboard_Click"/>
+                        <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click">
+                            <MenuItem x:Name="uxFileNewHaiku" Header="_Haiku" Click="uxFileNewHaiku_Click"/>
+                            <MenuItem x:Name="uxFileNewCouplet" Header="_Couplet" Click="uxFileNewCouplet_Click"/>
+                            <Separator/>
+                            <MenuItem x:Name="uxFileReload" Header="_Reload Couplets" Click="uxFileReload_Click"/>
+                        </MenuItem>
+                        <MenuItem x:Name="uxFileOpen" Header="_Open" Click="uxFileOpen_Click"/>
+                        <MenuItem x:Name="uxFileExit" Header="_Exit" Click="uxFileExit_Click"/>
                     </MenuItem>
-                    <MenuItem x:Name="uxFileOpen" Header="_Open" Click="uxFileOpen_Click"/>
-                    <MenuItem x:Name="uxFileExit" Header="_Exit" Click="uxFileExit_Click"/>
-                </MenuItem>
-                <MenuItem x:Name="uxEdit" Header="_Edit" Loaded="uxEdit_Loaded">
-                    <MenuItem x:Name="uxEditAdd" Header="_Add" Click="uxEditAdd_Click">
-                        <MenuItem x:Name="uxEditAddHaiku" Header="_Haiku" Click="uxEditAddHaiku_Click"/>
-                        <MenuItem x:Name="uxEditAddCouplet" Header="_Couplet" Click="uxEditAddCouplet_Click">
+                    <MenuItem x:Name="uxEdit" Header="_Edit" Loaded="uxEdit_Loaded">
+                        <MenuItem x:Name="uxEditAdd" Header="_Add" Click="uxEditAdd_Click">
+                            <MenuItem x:Name="uxEditAddHaiku" Header="_Haiku" Click="uxEditAddHaiku_Click"/>
+                            <MenuItem x:Name="uxEditAddCouplet" Header="_Couplet" Click="uxEditAddCouplet_Click">
+                            </MenuItem>
                         </MenuItem>
                     </MenuItem>
-                </MenuItem>
-                <MenuItem x:Name="uxHelp" Header="_Help" Loaded="uxHelp_Loaded"/>
-            </Menu>
-        </StackPanel>
+                    <MenuItem x:Name="uxHelp" Header="_Help" Loaded="uxHelp_Loaded"/>
+                </Menu>
+            </StackPanel>
 
-        <StackPanel DockPanel.Dock="Left">
-            <Button x:Name="uxButtonGenerateHaiku" Content="Generate!" Click="uxGenerateHaiku_Click" Width="155"/>
-        </StackPanel>
+            <StackPanel DockPanel.Dock="Left">
+                <Button x:Name="uxButtonGenerateHaiku" Content="Generate!" Click="uxButtonGenerateHaiku_Click" Width="155"/>
+            </StackPanel>
 
-        <StackPanel DockPanel.Dock="Right">
-            <Label x:Name="uxPossibleLinesLabel" Content="Possible Lines" Width="95"/>
-            <Expander Width="315">
-                <ListView x:Name="uxList" Width="315">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="" DisplayMemberBinding="{Binding HaikuContent}"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </Expander>
-        </StackPanel>
+        <ScrollViewer IsTabStop="true" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <StackPanel DockPanel.Dock="Right">
+                <Label x:Name="uxPossibleLinesLabel" Content="Possible Lines" Width="95"/>
+                <Expander Width="315">
+                    <ListView x:Name="uxList" Width="315" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="" DisplayMemberBinding="{Binding HaikuContent}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
     </DockPanel>
-
 </src:Events>

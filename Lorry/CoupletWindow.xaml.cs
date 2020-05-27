@@ -1,4 +1,5 @@
-﻿using Lorry.Helpers;
+﻿using Lorry.Couplets;
+using Lorry.Main;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,9 @@ namespace Lorry
         {
             InitializeComponent();
             this.DataContext = CoupletViewModel;
+
             uxList.ItemsSource = CoupletViewModel.Couplets;
+            uxCoupletRecent.DataContext = CoupletViewModel.Recents;
         }
 
         public new Lorry.Couplets.CoupletListViewModel CoupletViewModel { get { return _coupletViewModel; } }
@@ -34,7 +37,9 @@ namespace Lorry
         private void uxFileReload_Click(object sender, RoutedEventArgs e)
         {
             _coupletViewModel.LoadCouplets();
+
             uxList.ItemsSource = CoupletViewModel.Couplets;
+            uxCoupletRecent.DataContext = CoupletViewModel.Recents;
         }
     }
 }
