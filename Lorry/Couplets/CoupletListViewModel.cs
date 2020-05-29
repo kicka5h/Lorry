@@ -33,7 +33,6 @@ namespace Lorry.Couplets
             set { _recents = value; }
         }
 
-
         public void LoadCouplets()
         {
             _couplets = new ObservableCollection<Lorry.Couplets.Couplet>(_repo.GetAll().Select(t => t.ToUIModel()));
@@ -42,11 +41,6 @@ namespace Lorry.Couplets
         public void LoadRecents()
         {
             _recents = new ObservableCollection<Lorry.Main.Recent>(_recRepo.GetAll().Select(t => t.ToUIModel()));
-        }
-
-        public void AddRecents()
-        {
-            
         }
     }
 }

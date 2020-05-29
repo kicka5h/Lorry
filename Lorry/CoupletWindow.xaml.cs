@@ -41,5 +41,6 @@ namespace Lorry
             uxList.ItemsSource = CoupletViewModel.Couplets;
             uxCoupletRecent.DataContext = CoupletViewModel.Recents;
         }
+
     }
 }

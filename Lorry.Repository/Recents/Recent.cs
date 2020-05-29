@@ -19,7 +19,7 @@ namespace Lorry.Repository.Recents
         public static AutoMapper.IMapper mapper = mapperConfig.CreateMapper();
 
         /// <summary>
-        /// Converts TimecardRepository.Models.Couplet object to Database object Lorry.Database.Couplet for CRUD operations.
+        /// Converts Lorry.Repository.Couplet object to Database object Lorry.Database.Couplet for CRUD operations.
         /// </summary>
         /// <param name="databaseObject"></param>
         /// <returns></returns>
@@ -29,7 +29,7 @@ namespace Lorry.Repository.Recents
         }
 
         /// <summary>
-        /// Converts Lorry.Database.Couplet object to TimecardRepository.Models.Couplet object.
+        /// Converts Lorry.Database.Couplet object to Lorry.Repository.Models.Couplet object.
         /// </summary>
         /// <param name="databaseObject"></param>
         /// <returns></returns>

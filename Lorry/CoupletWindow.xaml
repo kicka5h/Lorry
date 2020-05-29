@@ -38,7 +38,7 @@
 
         <StackPanel DockPanel.Dock="Left">
             <Separator Margin="5"/>
-            <Button x:Name="uxGenerateCouplet" Content="Generate!" Click="uxGenerateCouplet_Click" Width="155"/>
+            <Button x:Name="uxButtonGenerateCouplet" Content="Generate!" Click="uxButtonGenerateCouplet_Click" Width="155"/>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Right">
