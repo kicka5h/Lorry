@@ -20,7 +20,7 @@ namespace Lorry
         private Lorry.Haikus.HaikuListViewModel _haikuViewModel = new Lorry.Haikus.HaikuListViewModel();
 
         private Lorry.Main.MainListViewModel _mainViewModel = new Lorry.Main.MainListViewModel();
-        public new Lorry.Main.MainListViewModel MainViewMdodel { get { return _mainViewModel; } }
+        public new Lorry.Main.MainListViewModel MainViewModel { get { return _mainViewModel; } }
 
 
         public HaikuWindow()
@@ -29,7 +29,7 @@ namespace Lorry
             this.DataContext = HaikuViewModel.Haikus;
             uxList.ItemsSource = HaikuViewModel.Haikus;
 
-            uxHaikuRecent.Content = MainViewMdodel.MostRecentHaiku.RecentContent;
+            uxHaikuRecent.Content = MainViewModel.MostRecentHaiku.RecentContent;
         }
 
         public new Lorry.Haikus.HaikuListViewModel HaikuViewModel { get { return _haikuViewModel; } }
@@ -40,7 +40,7 @@ namespace Lorry
             _mainViewModel.LoadRecents();
 
             uxList.ItemsSource = HaikuViewModel.Haikus;
-            uxHaikuRecent.Content = MainViewMdodel.MostRecentHaiku.RecentContent;
+            uxHaikuRecent.Content = MainViewModel.MostRecentHaiku.RecentContent;
         }
     }
 }

@@ -71,6 +71,7 @@ namespace Lorry
         {
             string returnRecent = GenerateRandom.RandomCouplet;
             CoupletWindow coupletWindow = new CoupletWindow();
+            MainWindow mainWindow = new MainWindow();
 
             Lorry.Repository.Recents.Recent newRecent = new Repository.Recents.Recent();
             newRecent.RecentContent = returnRecent;
@@ -79,12 +80,16 @@ namespace Lorry
 
             Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> addRecent = new Lorry.Repository.Recents.RecentRepository();
             addRecent.Insert(newRecent);
-            coupletWindow.uxCoupletRecent.Content = RecentViewModel.MostRecentCouplet.RecentContent;
+
+            Application.Current.MainWindow = coupletWindow;
+            mainWindow.uxExpanderRecent.IsExpanded = true;
         }
 
         public void uxButtonGenerateHaiku_Click(object sender, RoutedEventArgs e)
         {
             string returnRecent = GenerateRandom.RandomHaiku;
+            HaikuWindow haikuWindow = new HaikuWindow();
+            MainWindow mainWindow = new MainWindow();
 
             Lorry.Repository.Recents.Recent newRecent = new Repository.Recents.Recent();
             newRecent.RecentContent = returnRecent;
@@ -93,6 +98,9 @@ namespace Lorry
 
             Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> addRecent = new Lorry.Repository.Recents.RecentRepository();
             addRecent.Insert(newRecent);
+
+            Application.Current.MainWindow = haikuWindow;
+            mainWindow.uxExpanderRecent.IsExpanded = true;
         }
 
         #region unused event handlers

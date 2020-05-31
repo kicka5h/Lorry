@@ -14,7 +14,8 @@ namespace Lorry
         {
             InitializeComponent();
             this.DataContext = MainViewModel;
-            uxRecentPoem.DataContext = MainViewModel.Recents;
+
+            uxRecentPoem.Content = MainViewModel.MostRecent.RecentContent;
         }
 
         public Lorry.Main.MainListViewModel MainViewModel { get { return _mainViewModel; } }
@@ -23,7 +24,17 @@ namespace Lorry
         {
             _mainViewModel.LoadRecents();
             uxRecentPoem.DataContext = MainViewModel.Recents;
+
+            uxRecentPoem.Content = MainViewModel.MostRecent.RecentContent;
         }
 
+        private void uxRefreshRecent_Click(object sender, RoutedEventArgs e)
+        {
+            _mainViewModel.LoadRecents();
+            uxRecentPoem.DataContext = MainViewModel.Recents;
+
+            uxRecentPoem.Content = MainViewModel.MostRecent.RecentContent;
+            uxExpanderRecent.IsExpanded = true;
+        }
     }
 }

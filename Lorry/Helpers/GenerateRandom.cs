@@ -66,6 +66,8 @@ namespace Lorry.Helpers
         {
             get
             {
+                MainWindow mainWindow = new MainWindow();
+
                 string[] lines1 = new string[2];
                 for (int i = 0; i < 2; i++)
                 {
@@ -88,11 +90,16 @@ namespace Lorry.Helpers
                 }
                 string returnRecent3 = String.Join(Environment.NewLine, lines3);
 
-                string returnRecent = returnRecent1 + space + space + returnRecent2 + space + space + returnRecent3;
+                string generateMessage = "Success! Here's your Couplet:";
+
+                string closeMessage = "Press Ok to close.";
+
+                string returnRecent = generateMessage + space + space + returnRecent1 + space + space + returnRecent2 + space + space + returnRecent3 + space  + space + closeMessage;
+                string showRecent = returnRecent1 + space + space + returnRecent2 + space + space + returnRecent3;
 
                 MessageBox.Show(returnRecent);
 
-                return returnRecent;
+                return showRecent;
             }
         }
         #endregion
@@ -102,16 +109,27 @@ namespace Lorry.Helpers
         {
             get
             {
+                MainWindow mainWindow = new MainWindow();
+
                 string[] lines = new string[3];
                 for (int i = 0; i < 3; i++)
                 {
                     lines[i] = GenerateRandom.RandomHaikuLine.HaikuContent;
                 }
-                string returnRecent = String.Join(Environment.NewLine, lines);
+                string returnRecent1 = String.Join(Environment.NewLine, lines);
+
+                string generateMessage = "Success! Here's your Haiku:";
+
+                string closeMessage = "Press Ok to close.";
+
+                string space = "\n";
+
+                string returnRecent = generateMessage + space + space + returnRecent1 + space + space + closeMessage;
 
                 MessageBox.Show(returnRecent);
-
-                return returnRecent;
+                mainWindow.uxExpanderRecent.IsExpanded = true;
+                
+                return returnRecent1;
             }
         }
         #endregion

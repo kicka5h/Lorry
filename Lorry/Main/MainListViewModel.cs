@@ -11,7 +11,6 @@ namespace Lorry.Main
 
         private Lorry.Repository.Recents.RecentRepository _repo = new Lorry.Repository.Recents.RecentRepository();
 
-
         public MainListViewModel()
         {
             LoadRecents();
@@ -29,15 +28,25 @@ namespace Lorry.Main
             _recents = new ObservableCollection<Lorry.Main.Recent>(_repo.GetAll().Select(t => t.ToUIModel()));
         }
 
+        public Main.Recent MostRecent
+        {
+            get
+            {
+                Main.Recent mostRecent = _recents.OrderByDescending(t => t.RecentId).FirstOrDefault();
+
+                return mostRecent;
+            }
+        }
+
         public Main.Recent MostRecentCouplet
         {
 
             get
             {
-                Main.Recent mostRecent = _recents.OrderByDescending(t => t.RecentId).FirstOrDefault();
+                Main.Recent mostRecent = _recents.OrderByDescending(t => t.RecentType).FirstOrDefault();
 
                 if (mostRecent.RecentType == "couplet") { return mostRecent; }
-                else { return null; }
+                else { return mostRecent; }
             }
         }
 
@@ -45,10 +54,10 @@ namespace Lorry.Main
         {
             get
             {
-                Main.Recent mostRecent = _recents.OrderByDescending(t => t.RecentId).FirstOrDefault();
+                Main.Recent mostRecent = _recents.OrderByDescending(t => t.RecentType).FirstOrDefault();
 
                 if (mostRecent.RecentType == "haiku") { return mostRecent; }
-                else { return null; }
+                else { return mostRecent; }
             }
         }
     }
