@@ -70,7 +70,8 @@ namespace Lorry
         public void uxButtonGenerateCouplet_Click(object sender, RoutedEventArgs e)
         {
             string returnRecent = GenerateRandom.RandomCouplet;
-            
+            CoupletWindow coupletWindow = new CoupletWindow();
+
             Lorry.Repository.Recents.Recent newRecent = new Repository.Recents.Recent();
             newRecent.RecentContent = returnRecent;
             newRecent.RecentDate = DateTime.Now.ToString("MM.dd.yyyy");
@@ -78,6 +79,7 @@ namespace Lorry
 
             Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> addRecent = new Lorry.Repository.Recents.RecentRepository();
             addRecent.Insert(newRecent);
+            coupletWindow.uxCoupletRecent.Content = RecentViewModel.MostRecentCouplet.RecentContent;
         }
 
         public void uxButtonGenerateHaiku_Click(object sender, RoutedEventArgs e)

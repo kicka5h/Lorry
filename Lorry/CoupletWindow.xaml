@@ -45,7 +45,7 @@
             <Label x:Name="uxRecentCoupletLabel" Content="Recent" FontWeight="Bold" FontSize="18" Width="95" />
 
             <Expander x:Name="uxExpanderRecentCoupletWindow" Width="315">
-                <Label x:Name="uxCoupletRecent"  Content="{Binding RecentContent}" Width="315"/>
+                <Label x:Name="uxCoupletRecent"  Content="" Width="315"/>
             </Expander>
             
             <Separator Margin="5"/>

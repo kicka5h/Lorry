@@ -36,9 +36,16 @@
                 <Button x:Name="uxButtonGenerateHaiku" Content="Generate!" Click="uxButtonGenerateHaiku_Click" Width="155"/>
             </StackPanel>
 
-        <ScrollViewer IsTabStop="true" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <StackPanel DockPanel.Dock="Right">
-                <Label x:Name="uxPossibleLinesLabel" Content="Possible Lines" Width="95"/>
+            <Label x:Name="uxRecentHaikuLabel" Content="Recent" FontWeight="Bold" FontSize="18" Width="95"/>
+
+            <Expander x:Name="uxExpanderRecentHaikuWindow" Width="315">
+                <Label x:Name="uxHaikuRecent" Content="" Width="315"/>
+            </Expander>
+                
+            <Separator Margin="5"/>
+
+            <Label x:Name="uxPossibleLinesLabel" Content="Possible Lines" Width="95"/>
                 <Expander Width="315">
                     <ListView x:Name="uxList" Width="315" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListView.View>
@@ -49,6 +56,6 @@
                     </ListView>
                 </Expander>
             </StackPanel>
-        </ScrollViewer>
+
     </DockPanel>
 </src:Events>

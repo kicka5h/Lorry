@@ -28,6 +28,28 @@ namespace Lorry.Main
         {
             _recents = new ObservableCollection<Lorry.Main.Recent>(_repo.GetAll().Select(t => t.ToUIModel()));
         }
-    }
 
+        public Main.Recent MostRecentCouplet
+        {
+
+            get
+            {
+                Main.Recent mostRecent = _recents.OrderByDescending(t => t.RecentId).FirstOrDefault();
+
+                if (mostRecent.RecentType == "couplet") { return mostRecent; }
+                else { return null; }
+            }
+        }
+
+        public Main.Recent MostRecentHaiku
+        {
+            get
+            {
+                Main.Recent mostRecent = _recents.OrderByDescending(t => t.RecentId).FirstOrDefault();
+
+                if (mostRecent.RecentType == "haiku") { return mostRecent; }
+                else { return null; }
+            }
+        }
+    }
 }

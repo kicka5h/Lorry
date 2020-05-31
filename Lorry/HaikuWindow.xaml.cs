@@ -19,11 +19,17 @@ namespace Lorry
     {
         private Lorry.Haikus.HaikuListViewModel _haikuViewModel = new Lorry.Haikus.HaikuListViewModel();
 
+        private Lorry.Main.MainListViewModel _mainViewModel = new Lorry.Main.MainListViewModel();
+        public new Lorry.Main.MainListViewModel MainViewMdodel { get { return _mainViewModel; } }
+
+
         public HaikuWindow()
         {
             InitializeComponent();
-            this.DataContext = HaikuViewModel;
+            this.DataContext = HaikuViewModel.Haikus;
             uxList.ItemsSource = HaikuViewModel.Haikus;
+
+            uxHaikuRecent.Content = MainViewMdodel.MostRecentHaiku.RecentContent;
         }
 
         public new Lorry.Haikus.HaikuListViewModel HaikuViewModel { get { return _haikuViewModel; } }
@@ -31,7 +37,10 @@ namespace Lorry
         private void uxFileReload_Click(object sender, RoutedEventArgs e)
         {
             _haikuViewModel.LoadHaikus();
+            _mainViewModel.LoadRecents();
+
             uxList.ItemsSource = HaikuViewModel.Haikus;
+            uxHaikuRecent.Content = MainViewMdodel.MostRecentHaiku.RecentContent;
         }
     }
 }

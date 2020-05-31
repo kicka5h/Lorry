@@ -22,6 +22,10 @@ namespace Lorry
     public partial class CoupletWindow : Events
     {
         private Lorry.Couplets.CoupletListViewModel _coupletViewModel = new Lorry.Couplets.CoupletListViewModel();
+        public new Lorry.Couplets.CoupletListViewModel CoupletViewModel { get { return _coupletViewModel; } }
+
+        private Lorry.Main.MainListViewModel _mainViewModel = new Lorry.Main.MainListViewModel();
+        public new Lorry.Main.MainListViewModel MainViewMdodel { get { return _mainViewModel; } }
 
         public CoupletWindow()
         {
@@ -29,18 +33,16 @@ namespace Lorry
             this.DataContext = CoupletViewModel;
 
             uxList.ItemsSource = CoupletViewModel.Couplets;
-            uxCoupletRecent.DataContext = CoupletViewModel.Recents;
+            uxCoupletRecent.Content = MainViewMdodel.MostRecentCouplet.RecentContent;
         }
-
-        public new Lorry.Couplets.CoupletListViewModel CoupletViewModel { get { return _coupletViewModel; } }
 
         private void uxFileReload_Click(object sender, RoutedEventArgs e)
         {
             _coupletViewModel.LoadCouplets();
+            _mainViewModel.LoadRecents();
 
             uxList.ItemsSource = CoupletViewModel.Couplets;
-            uxCoupletRecent.DataContext = CoupletViewModel.Recents;
+            uxCoupletRecent.Content = MainViewMdodel.MostRecentCouplet.RecentContent;
         }
-
     }
 }
