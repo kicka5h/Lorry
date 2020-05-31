@@ -36,5 +36,6 @@ namespace Lorry
             uxRecentPoem.Content = MainViewModel.MostRecent.RecentContent;
             uxExpanderRecent.IsExpanded = true;
         }
+
     }
 }

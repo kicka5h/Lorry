@@ -25,6 +25,24 @@ namespace Lorry
         public Lorry.Main.MainListViewModel RecentViewModel { get { return _recentViewModel; } }
         #endregion
 
+        public void uxButtonEditCouplets_Click(object sender, RoutedEventArgs e)
+        {
+            var coupletWindow = new CoupletWindow();
+            Application.Current.MainWindow = coupletWindow;
+            coupletWindow.Show();
+
+            this.Close();
+        }
+
+        public void uxButtonEditHaikus_Click(object sender, RoutedEventArgs e)
+        {
+            var haikuWindow = new HaikuWindow();
+            Application.Current.MainWindow = haikuWindow;
+            haikuWindow.Show();
+
+            this.Close();
+        }
+
         public void uxButtonViewCouplets_Click(object sender, RoutedEventArgs e)
         {
 

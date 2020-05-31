@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Lorry" Height="450" Width="800">
+        Title="Lorry" Height="450" Width="900">
 
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -30,18 +30,18 @@
         </Menu>
 
         <StackPanel DockPanel.Dock="Bottom" Height="115">
-            <Button x:Name="uxRefreshRecent" Content="Refresh" Click="uxRefreshRecent_Click" Width="155" RenderTransformOrigin="-0.165,0.281" />
+            <Button x:Name="uxRefreshRecent" Content="Refresh" Click="uxRefreshRecent_Click" Width="155" />
         </StackPanel>
 
-        <StackPanel DockPanel.Dock="Left">
+        <StackPanel DockPanel.Dock="Left" Width="300">
             <Button x:Name="uxButtonGenerateCouplet" Content="Generate Couplet" Click="uxButtonGenerateCouplet_Click" Width="155"/>
             <Separator Margin="5"/>
-            <Button x:Name="uxButtonGenerateHaiku" Content="Generate Haiku" Click="uxButtonGenerateHaiku_Click" Width="155"/>
-            <Separator Margin="100" />
+            <Button x:Name="uxButtonViewCouplets" Content="View Couplets" Click="uxButtonViewCouplets_Click" Width="155"/>
+            <Separator Margin="5" />
+            <Button x:Name="uxButtonEditCouplets" Content="Edit Couplets" Click="uxButtonEditCouplets_Click" Width="155"/>
         </StackPanel>
 
-        <StackPanel DockPanel.Dock="Left">
-
+        <StackPanel DockPanel.Dock="Left" Width="300">
             <Label x:Name="uxRecentLabel" FontWeight="Bold" FontSize="18" Content="Recent" Loaded="uxRecentLabel_Loaded" Width="82" RenderTransformOrigin="0.938,0.534"/>
 
             <Expander x:Name="uxExpanderRecent" Width="315">
@@ -49,10 +49,12 @@
             </Expander>
         </StackPanel>
 
-        <StackPanel DockPanel.Dock="Right">
-            <Button x:Name="uxButtonViewCouplets" Content="View Couplets" Click="uxButtonViewCouplets_Click" Width="155"/>
+        <StackPanel DockPanel.Dock="Right" Width="300">
+            <Button x:Name="uxButtonGenerateHaiku" Content="Generate Haiku" Click="uxButtonGenerateHaiku_Click" Width="155"/>
             <Separator Margin="5"/>
             <Button x:Name="uxButtonViewHaikus" Content="View Haikus" Click="uxButtonViewHaikus_Click" Width="155"/>
+            <Separator Margin="5"/>
+            <Button x:Name="uxButtonEditHaikus" Content="Edit Haikus" Click="uxButtonEditHaikus_Click" Width="155" />
         </StackPanel>
 
     </DockPanel>
