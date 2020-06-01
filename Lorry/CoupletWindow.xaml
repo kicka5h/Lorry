@@ -41,26 +41,30 @@
             <Button x:Name="uxButtonGenerateCouplet" Content="Generate!" Click="uxButtonGenerateCouplet_Click" Width="155"/>
         </StackPanel>
 
-        <StackPanel DockPanel.Dock="Right">
-            <Label x:Name="uxRecentCoupletLabel" Content="Recent" FontWeight="Bold" FontSize="18" Width="95" />
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel DockPanel.Dock="Right">
+                <Label x:Name="uxRecentCoupletLabel" Content="Recent" FontWeight="Bold" FontSize="18" Width="95" />
 
-            <Expander x:Name="uxExpanderRecentCoupletWindow" Width="315">
-                <Label x:Name="uxCoupletRecent"  Content="" Width="315"/>
-            </Expander>
-            
-            <Separator Margin="5"/>
-            <Label x:Name="uxPossibleLinesLabel" Content="Possible Lines" Width="95" />
-            <Expander Width="315">
-                <ListView x:Name="uxList" Width="315">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="" DisplayMemberBinding="{Binding CoupletContent}"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </Expander>
+                <Expander x:Name="uxExpanderRecentCoupletWindow" Width="315">
+                    <Label x:Name="uxCoupletRecent"  Content="" Width="315"/>
+                </Expander>
 
-        </StackPanel>
-        
+                <Separator Margin="5"/>
+                <Label x:Name="uxPossibleLinesLabel" Content="All Couplets" FontWeight="Bold" FontSize="18" Width="118" />
+                <Expander Width="315">
+                    <ListView x:Name="uxList" ItemsSource="{Binding Recents}" MouseDoubleClick="ListViewItem_MouseDoubleClick" Width="315">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Header="" DisplayMemberBinding="{Binding RecentContent}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Expander>
+
+            </StackPanel>
+        </ScrollViewer>
+
     </DockPanel>
 </src:Events>

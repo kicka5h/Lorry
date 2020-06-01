@@ -18,6 +18,15 @@ namespace Lorry.Repository.Haikus
             throw new NotImplementedException();
         }
 
+        public Haiku Delete(Haiku deleteObject)
+        {
+            var databaseObject = deleteObject.ToDbModel();
+
+            DatabaseManager.Instance.Haiku.Remove(databaseObject);
+            DatabaseManager.Instance.SaveChanges();
+
+            return databaseObject.ToRepositoryModel();
+        }
 
         public Haiku Insert(Haiku newObject)
         {

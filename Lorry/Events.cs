@@ -45,12 +45,20 @@ namespace Lorry
 
         public void uxButtonViewCouplets_Click(object sender, RoutedEventArgs e)
         {
+            var coupletWindow = new CoupletWindow();
+            Application.Current.MainWindow = coupletWindow;
+            coupletWindow.Show();
 
+            this.Close();
         }
 
         public void uxButtonViewHaikus_Click(object sender, RoutedEventArgs e)
         {
+            var haikuWindow = new HaikuWindow();
+            Application.Current.MainWindow = haikuWindow;
+            haikuWindow.Show();
 
+            this.Close();
         }
 
         public void uxFileDashboard_Click(object sender, RoutedEventArgs e)

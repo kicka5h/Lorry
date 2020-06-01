@@ -27,6 +27,15 @@ namespace Lorry.Repository.Recents
             throw new NotImplementedException();
         }
 
+        public Recent Delete(Recent deleteObject)
+        {
+            var databaseObject = deleteObject.ToDBModel();
+
+            DatabaseManager.Instance.Recent.Remove(databaseObject);
+            DatabaseManager.Instance.SaveChanges();
+
+            return databaseObject.ToRepositoryModel();
+        }
 
         public Recent Insert(Recent newObject)
         {
@@ -37,7 +46,6 @@ namespace Lorry.Repository.Recents
 
             return databaseObject.ToRepositoryModel();
         }
-
 
         public Recent Update(Recent inputObject)
         {

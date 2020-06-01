@@ -41,13 +41,15 @@
             <Button x:Name="uxButtonEditCouplets" Content="Edit Couplets" Click="uxButtonEditCouplets_Click" Width="155"/>
         </StackPanel>
 
-        <StackPanel DockPanel.Dock="Left" Width="300">
-            <Label x:Name="uxRecentLabel" FontWeight="Bold" FontSize="18" Content="Recent" Loaded="uxRecentLabel_Loaded" Width="82" RenderTransformOrigin="0.938,0.534"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel DockPanel.Dock="Left" Width="300">
+                <Label x:Name="uxRecentLabel" FontWeight="Bold" FontSize="18" Content="Recent" Loaded="uxRecentLabel_Loaded" Width="82" RenderTransformOrigin="0.938,0.534"/>
 
-            <Expander x:Name="uxExpanderRecent" Width="315">
-                <Label x:Name="uxRecentPoem" Content="" Width="315"/>
-            </Expander>
-        </StackPanel>
+                <Expander x:Name="uxExpanderRecent" Width="315">
+                    <Label x:Name="uxRecentPoem" Content="" Width="315"/>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
 
         <StackPanel DockPanel.Dock="Right" Width="300">
             <Button x:Name="uxButtonGenerateHaiku" Content="Generate Haiku" Click="uxButtonGenerateHaiku_Click" Width="155"/>

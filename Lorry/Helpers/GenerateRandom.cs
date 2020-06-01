@@ -175,10 +175,6 @@ namespace Lorry.Helpers
                 string returnRecent3 = String.Join(Environment.NewLine, lines3);
                 */
 
-                string generateMessage = "Success! Here's your Couplet:";
-
-                string closeMessage = "Press Ok to close.";
-
                 /*
                 string returnRecent = generateMessage + space + space + returnRecent1 + space + space + returnRecent2 + space + space + returnRecent3 + space  + space + closeMessage;
                 string showRecent = returnRecent1 + space + space + returnRecent2 + space + space + returnRecent3;
@@ -189,7 +185,6 @@ namespace Lorry.Helpers
                 string returnRecent3 = GenerateRandom.RandomTwoCoupletLines;
 
                 string returnRecent = returnRecent1 + space + space + returnRecent2 + space + space + returnRecent3;
-                string showMessage = generateMessage + space + returnRecent1 + space + returnRecent2 + space + returnRecent3 + space + closeMessage;
 
                 MessageBox.Show(returnRecent);
 
@@ -214,17 +209,9 @@ namespace Lorry.Helpers
                 string returnRecent1 = String.Join(Environment.NewLine, lines);
                 */
 
-                string generateMessage = "Success! Here's your Haiku:";
-
-                string closeMessage = "Press Ok to close.";
-
-                string space = "\n";
-
                 string returnRecent = GenerateRandom.RandomThreeHaikuLines;
 
-                string showMessage = generateMessage + space + space + returnRecent + space + space + closeMessage;
-
-                MessageBox.Show(showMessage);
+                MessageBox.Show(returnRecent);
                 mainWindow.uxExpanderRecent.IsExpanded = true;
                 
                 return returnRecent;

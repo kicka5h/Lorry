@@ -13,5 +13,7 @@ namespace Lorry.Repository
         T Update(T updateObject);
 
         T Insert(T insertObject);
+
+        T Delete(T deleteObject);
     }
 }

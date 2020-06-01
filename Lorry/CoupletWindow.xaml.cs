@@ -3,6 +3,7 @@ using Lorry.Main;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,25 +26,40 @@ namespace Lorry
 
         private Lorry.Main.MainListViewModel _mainViewModel = new Lorry.Main.MainListViewModel();
         public new Lorry.Main.MainListViewModel MainViewModel { get { return _mainViewModel; } }
+        public new Lorry.Couplets.CoupletListViewModel CoupletViewModel { get { return _coupletViewModel; } }
+
+        public ObservableCollection<Lorry.Main.Recent> Recents { get; set; }
 
         public CoupletWindow()
         {
             InitializeComponent();
-            this.DataContext = CoupletViewModel.Couplets;
-            uxList.ItemsSource = CoupletViewModel.Couplets;
 
-            uxCoupletRecent.Content = MainViewModel.MostRecentCouplet.RecentContent;
+            DataContext = Recents;
+            uxList.DataContext = Recents;
+            uxList.ItemsSource = MainViewModel.Recents;
         }
-
-        public new Lorry.Couplets.CoupletListViewModel CoupletViewModel { get { return _coupletViewModel; } }
 
         private void uxFileReload_Click(object sender, RoutedEventArgs e)
         {
             _coupletViewModel.LoadCouplets();
             _mainViewModel.LoadRecents();
+            uxList.DataContext = MainViewModel;
 
-            uxList.ItemsSource = CoupletViewModel.Couplets;
+            uxList.ItemsSource = CoupletViewModel.Recents;
             uxCoupletRecent.Content = MainViewModel.MostRecentCouplet.RecentContent;
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (MessageBox.Show($"", "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> deleteRecent = new Lorry.Repository.Recents.RecentRepository();
+
+                //uxList.Items.RemoveAt(uxList.Items.IndexOf(uxList.SelectedItem));
+                //uxList.SelectedItems.RemoveAt(uxList.Items.IndexOf(uxList.SelectedItem));
+                //deleteRecent.Delete(uxList.SelectedItem);
+            }
+            else { };
         }
     }
 }

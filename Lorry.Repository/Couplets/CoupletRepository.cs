@@ -30,6 +30,15 @@ namespace Lorry.Repository.Couplets
             throw new NotImplementedException();            
         }
 
+        public Couplet Delete(Couplet deleteObject)
+        {
+            var databaseObject = deleteObject.ToDbModel();
+
+            DatabaseManager.Instance.Couplet.Remove(databaseObject);
+            DatabaseManager.Instance.SaveChanges();
+
+            return databaseObject.ToRepositoryModel();
+        }
 
         public Couplet Insert(Couplet newObject)
         {
