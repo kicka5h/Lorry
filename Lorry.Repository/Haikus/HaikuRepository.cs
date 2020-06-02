@@ -3,6 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
+/*
+IEnumerable<T> GetAll();
+
+T Get(int key);
+
+void Delete(T deleteObject);
+
+void Update(T updateObject);
+
+void Insert(T insertObject);
+*/
 namespace Lorry.Repository.Haikus
 {
     public class HaikuRepository : IDatabaseRepository<Lorry.Repository.Haikus.Haiku>

@@ -9,6 +9,8 @@ IEnumerable<T> GetAll();
 
 T Get(int key);
 
+void Delete(T deleteObject);
+
 void Update(T updateObject);
 
 void Insert(T insertObject);
@@ -63,7 +65,5 @@ namespace Lorry.Repository.Recents
 
             return original.ToRepositoryModel();
         }
-
     }
-
 }

@@ -38,7 +38,8 @@ namespace Lorry
 
             DataContext = Recents;
             uxList.DataContext = Recents;
-            uxList.ItemsSource = MainViewModel.Recents;
+            uxList.ItemsSource = MainViewModel.Recents.Where(t => t.RecentType == "couplet");
+            uxCoupletRecent.Content = MainViewModel.MostRecentCouplet.RecentContent;
         }
 
         private void uxFileReload_Click(object sender, RoutedEventArgs e)
@@ -58,17 +59,13 @@ namespace Lorry
                 Main.Recent item = (Main.Recent)uxList.Items.CurrentItem;
                 string content = item.RecentContent;
 
-                /*
-                var deleteRecent = from deletedRecent in getDeleteRecent
-                                   where deletedRecent.RecentContent == content
-                                   select deletedRecent;
-                */
-
                 Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == content).SingleOrDefault();
                 Repository.Recents.Recent finallyDelete = deleteRecent.ToRepositoryModel();
 
                 Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
                 getRecent.Delete(finallyDelete);
+
+                MessageBox.Show("Okay, poem has been deleted.");
             }
             else { };
         }

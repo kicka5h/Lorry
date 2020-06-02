@@ -18,7 +18,7 @@ namespace Lorry.Repository.Haikus
         public static AutoMapper.IMapper mapper = mapperConfig.CreateMapper();
 
         /// <summary>
-        /// Converts TimecardRepository.Models.Couplet object to Database object Lorry.Database.Couplet for CRUD operations.
+        /// Converts Lorry.Repository.Haikus.Haiku object to Database object Lorry.Database.Haiku for CRUD operations.
         /// </summary>
         /// <param name="databaseObject"></param>
         /// <returns></returns>
@@ -28,7 +28,7 @@ namespace Lorry.Repository.Haikus
         }
 
         /// <summary>
-        /// Converts Lorry.Database.Couplet object to TimecardRepository.Models.Couplet object.
+        /// Converts Lorry.Database.Haiku object to Lorry.Repository.Haikus.Haiku object.
         /// </summary>
         /// <param name="databaseObject"></param>
         /// <returns></returns>
