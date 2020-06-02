@@ -21,8 +21,9 @@ namespace Lorry.Repository.Haikus
         public Haiku Delete(Haiku deleteObject)
         {
             var databaseObject = deleteObject.ToDbModel();
+            var original = DatabaseManager.Instance.Recent.Find(databaseObject.HaikuId);
 
-            DatabaseManager.Instance.Haiku.Remove(databaseObject);
+            DatabaseManager.Instance.Recent.Remove(original);
             DatabaseManager.Instance.SaveChanges();
 
             return databaseObject.ToRepositoryModel();

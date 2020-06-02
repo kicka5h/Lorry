@@ -33,9 +33,13 @@ namespace Lorry.Repository.Couplets
         public Couplet Delete(Couplet deleteObject)
         {
             var databaseObject = deleteObject.ToDbModel();
+            var original = DatabaseManager.Instance.Recent.Find(databaseObject.CoupletId);
 
-            DatabaseManager.Instance.Couplet.Remove(databaseObject);
-            DatabaseManager.Instance.SaveChanges();
+            if (original != null)
+            {
+                DatabaseManager.Instance.Recent.Remove(original);
+                DatabaseManager.Instance.SaveChanges();
+            }
 
             return databaseObject.ToRepositoryModel();
         }

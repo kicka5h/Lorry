@@ -31,9 +31,9 @@ namespace Lorry.Repository.Recents
         public Recent Delete(Recent deleteObject)
         {
             var databaseObject = deleteObject.ToDBModel();
+            var original = DatabaseManager.Instance.Recent.Find(databaseObject.RecentId);
 
-            DatabaseManager.Instance.Recent.Remove(databaseObject).State = EntityState.Deleted;
-            //DatabaseManager.Instance.Recent.Remove(databaseObject);
+            DatabaseManager.Instance.Recent.Remove(original);
             DatabaseManager.Instance.SaveChanges();
 
             return databaseObject.ToRepositoryModel();

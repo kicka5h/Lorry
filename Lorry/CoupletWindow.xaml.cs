@@ -63,13 +63,12 @@ namespace Lorry
                                    where deletedRecent.RecentContent == content
                                    select deletedRecent;
                 */
-                Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == content).FirstOrDefault();
+
+                Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == content).SingleOrDefault();
                 Repository.Recents.Recent finallyDelete = deleteRecent.ToRepositoryModel();
-                Repository.Recents.Recent delete = new Repository.Recents.Recent { RecentId = finallyDelete.RecentId };
 
                 Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
-                //getRecent.Get(finallyDelete);
-                getRecent.Delete(delete);
+                getRecent.Delete(finallyDelete);
             }
             else { };
         }
