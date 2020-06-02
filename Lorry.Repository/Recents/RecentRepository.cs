@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 /*
 IEnumerable<T> GetAll();
@@ -31,7 +32,8 @@ namespace Lorry.Repository.Recents
         {
             var databaseObject = deleteObject.ToDBModel();
 
-            DatabaseManager.Instance.Recent.Remove(databaseObject);
+            DatabaseManager.Instance.Recent.Remove(databaseObject).State = EntityState.Deleted;
+            //DatabaseManager.Instance.Recent.Remove(databaseObject);
             DatabaseManager.Instance.SaveChanges();
 
             return databaseObject.ToRepositoryModel();

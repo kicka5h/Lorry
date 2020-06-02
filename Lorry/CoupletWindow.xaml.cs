@@ -1,9 +1,11 @@
 ﻿using Lorry.Couplets;
 using Lorry.Main;
+using Lorry.Repository.Recents;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,13 +53,23 @@ namespace Lorry
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (MessageBox.Show($"", "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Are you sure you'd like to delete this poem?", "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> deleteRecent = new Lorry.Repository.Recents.RecentRepository();
+                Main.Recent item = (Main.Recent)uxList.Items.CurrentItem;
+                string content = item.RecentContent;
 
-                //uxList.Items.RemoveAt(uxList.Items.IndexOf(uxList.SelectedItem));
-                //uxList.SelectedItems.RemoveAt(uxList.Items.IndexOf(uxList.SelectedItem));
-                //deleteRecent.Delete(uxList.SelectedItem);
+                /*
+                var deleteRecent = from deletedRecent in getDeleteRecent
+                                   where deletedRecent.RecentContent == content
+                                   select deletedRecent;
+                */
+                Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == content).FirstOrDefault();
+                Repository.Recents.Recent finallyDelete = deleteRecent.ToRepositoryModel();
+                Repository.Recents.Recent delete = new Repository.Recents.Recent { RecentId = finallyDelete.RecentId };
+
+                Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
+                //getRecent.Get(finallyDelete);
+                getRecent.Delete(delete);
             }
             else { };
         }
