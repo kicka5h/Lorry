@@ -29,35 +29,68 @@
             <MenuItem x:Name="uxHelp" Header="_Help" Loaded="uxHelp_Loaded"/>
         </Menu>
 
-        <StackPanel DockPanel.Dock="Bottom" Height="115">
+        <StackPanel DockPanel.Dock="Bottom" Height="51">
             <Button x:Name="uxRefreshRecent" Content="Refresh" Click="uxRefreshRecent_Click" Width="155" />
         </StackPanel>
 
-        <StackPanel DockPanel.Dock="Left" Width="300">
-            <Button x:Name="uxButtonGenerateCouplet" Content="Generate Couplet" Click="uxButtonGenerateCouplet_Click" Width="155"/>
-            <Separator Margin="5"/>
-            <Button x:Name="uxButtonViewCouplets" Content="View Couplets" Click="uxButtonViewCouplets_Click" Width="155"/>
-            <Separator Margin="5" />
-            <Button x:Name="uxButtonEditCouplets" Content="Edit Couplets" Click="uxButtonEditCouplets_Click" Width="155"/>
-        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel DockPanel.Dock="Left" Width="300">
+                <Button x:Name="uxButtonGenerateCouplet" Content="Generate Couplet" Click="uxButtonGenerateCouplet_Click" Width="155"/>
+                <Separator Margin="5"/>
+                <Button x:Name="uxButtonViewCouplets" Content="View Couplets" Click="uxButtonViewCouplets_Click" Width="155"/>
+                <Separator Margin="5" />
+                <Button x:Name="uxButtonEditCouplets" Content="Edit Couplets" Click="uxButtonEditCouplets_Click" Width="155"/>
+                <Separator Margin="5"/>
+                
+                <Label x:Name="uxAllCoupletsLabel" Content="All Couplets" FontWeight="Bold" FontSize="18" Width="115" />
+                <Expander x:Name="uxCoupletExpander" Width="300">
+                    <ListView x:Name="uxCoupletList" ItemsSource="{Binding Recents}" MouseDoubleClick="uxCoupletList_MouseDoubleClick" Width="300">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Header="" DisplayMemberBinding="{Binding RecentContent}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel DockPanel.Dock="Left" Width="300">
                 <Label x:Name="uxRecentLabel" FontWeight="Bold" FontSize="18" Content="Recent" Loaded="uxRecentLabel_Loaded" Width="82" RenderTransformOrigin="0.938,0.534"/>
 
-                <Expander x:Name="uxExpanderRecent" Width="315">
-                    <Label x:Name="uxRecentPoem" Content="" Width="315"/>
+                <Expander x:Name="uxExpanderRecent" Width="300">
+                    <Label x:Name="uxRecentPoem" Content="" Width="300"/>
                 </Expander>
             </StackPanel>
         </ScrollViewer>
 
-        <StackPanel DockPanel.Dock="Right" Width="300">
-            <Button x:Name="uxButtonGenerateHaiku" Content="Generate Haiku" Click="uxButtonGenerateHaiku_Click" Width="155"/>
-            <Separator Margin="5"/>
-            <Button x:Name="uxButtonViewHaikus" Content="View Haikus" Click="uxButtonViewHaikus_Click" Width="155"/>
-            <Separator Margin="5"/>
-            <Button x:Name="uxButtonEditHaikus" Content="Edit Haikus" Click="uxButtonEditHaikus_Click" Width="155" />
-        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel DockPanel.Dock="Right" Width="300">
+                <Button x:Name="uxButtonGenerateHaiku" Content="Generate Haiku" Click="uxButtonGenerateHaiku_Click" Width="155"/>
+                <Separator Margin="5"/>
+                <Button x:Name="uxButtonViewHaikus" Content="View Haikus" Click="uxButtonViewHaikus_Click" Width="155"/>
+                <Separator Margin="5"/>
+                <Button x:Name="uxButtonEditHaikus" Content="Edit Haikus" Click="uxButtonEditHaikus_Click" Width="155" />
+                <Separator Margin="5"/>
+
+                <Label x:Name="uxAllHaikusLabel" Content="All Haikus" FontWeight="Bold" FontSize="18" Width="115" />
+                <Expander x:Name="uxHaikuExpander" Width="300">
+                    <ListView x:Name="uxHaikuList" ItemsSource="{Binding Recents}" MouseDoubleClick="uxHaikuList_MouseDoubleClick" Width="300">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Header="" DisplayMemberBinding="{Binding RecentContent}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Expander>
+
+            </StackPanel>
+        </ScrollViewer>
 
     </DockPanel>
 </src:Events>

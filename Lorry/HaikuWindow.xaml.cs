@@ -17,11 +17,13 @@ namespace Lorry
     /// </summary>
     public partial class HaikuWindow : Events
     {
+        #region addd the view model context
         private Lorry.Haikus.HaikuListViewModel _haikuViewModel = new Lorry.Haikus.HaikuListViewModel();
+        public new Lorry.Haikus.HaikuListViewModel HaikuViewModel { get { return _haikuViewModel; } }
 
         private Lorry.Main.MainListViewModel _mainViewModel = new Lorry.Main.MainListViewModel();
         public new Lorry.Main.MainListViewModel MainViewModel { get { return _mainViewModel; } }
-
+        #endregion
 
         public HaikuWindow()
         {
@@ -29,17 +31,6 @@ namespace Lorry
             this.DataContext = HaikuViewModel.Haikus;
             uxList.ItemsSource = HaikuViewModel.Haikus;
 
-            uxHaikuRecent.Content = MainViewModel.MostRecentHaiku.RecentContent;
-        }
-
-        public new Lorry.Haikus.HaikuListViewModel HaikuViewModel { get { return _haikuViewModel; } }
-
-        private void uxFileReload_Click(object sender, RoutedEventArgs e)
-        {
-            _haikuViewModel.LoadHaikus();
-            _mainViewModel.LoadRecents();
-
-            uxList.ItemsSource = HaikuViewModel.Haikus;
             uxHaikuRecent.Content = MainViewModel.MostRecentHaiku.RecentContent;
         }
     }

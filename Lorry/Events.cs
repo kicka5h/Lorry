@@ -12,6 +12,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Lorry
 {
@@ -20,79 +21,16 @@ namespace Lorry
         #region add the view model context
         private Lorry.Couplets.CoupletListViewModel _coupletViewModel = new Lorry.Couplets.CoupletListViewModel();
         public Lorry.Couplets.CoupletListViewModel CoupletViewModel { get { return _coupletViewModel; } }
+        private Lorry.Haikus.HaikuListViewModel _haikuViewModel = new Lorry.Haikus.HaikuListViewModel();
+        public new Lorry.Haikus.HaikuListViewModel HaikuViewModel { get { return _haikuViewModel; } }
 
         private Lorry.Main.MainListViewModel _recentViewModel = new Lorry.Main.MainListViewModel();
         public Lorry.Main.MainListViewModel RecentViewModel { get { return _recentViewModel; } }
+        private Lorry.Main.MainListViewModel _mainViewModel = new Lorry.Main.MainListViewModel();
+        public new Lorry.Main.MainListViewModel MainViewModel { get { return _mainViewModel; } }
         #endregion
 
-        public void uxButtonEditCouplets_Click(object sender, RoutedEventArgs e)
-        {
-            var coupletWindow = new CoupletWindow();
-            Application.Current.MainWindow = coupletWindow;
-            coupletWindow.Show();
-
-            this.Close();
-        }
-
-        public void uxButtonEditHaikus_Click(object sender, RoutedEventArgs e)
-        {
-            var haikuWindow = new HaikuWindow();
-            Application.Current.MainWindow = haikuWindow;
-            haikuWindow.Show();
-
-            this.Close();
-        }
-
-        public void uxButtonViewCouplets_Click(object sender, RoutedEventArgs e)
-        {
-            var coupletWindow = new CoupletWindow();
-            Application.Current.MainWindow = coupletWindow;
-            coupletWindow.Show();
-
-            this.Close();
-        }
-
-        public void uxButtonViewHaikus_Click(object sender, RoutedEventArgs e)
-        {
-            var haikuWindow = new HaikuWindow();
-            Application.Current.MainWindow = haikuWindow;
-            haikuWindow.Show();
-
-            this.Close();
-        }
-
-        public void uxFileDashboard_Click(object sender, RoutedEventArgs e)
-        {
-            var mainWindow = new MainWindow();
-            Application.Current.MainWindow = mainWindow;
-            mainWindow.Show();
-
-            this.Close();
-        }
-
-        public void uxFileNewHaiku_Click(object sender, RoutedEventArgs e)
-        {
-            var haikuWindow = new HaikuWindow();
-            Application.Current.MainWindow = haikuWindow;
-            haikuWindow.Show();
-
-            this.Close();
-        }
-
-        public void uxFileNewCouplet_Click(object sender, RoutedEventArgs e)
-        {
-            var coupletWindow = new CoupletWindow();
-            Application.Current.MainWindow = coupletWindow;
-            coupletWindow.Show();
-
-            this.Close();
-        }
-
-        public void uxFileExit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
+        #region couplet events
         public void uxButtonGenerateCouplet_Click(object sender, RoutedEventArgs e)
         {
             string returnRecent = GenerateRandom.RandomCouplet;
@@ -111,6 +49,98 @@ namespace Lorry
             mainWindow.uxExpanderRecent.IsExpanded = true;
         }
 
+        public void uxFileNewCouplet_Click(object sender, RoutedEventArgs e)
+        {
+            var coupletWindow = new CoupletWindow();
+            Application.Current.MainWindow = coupletWindow;
+            coupletWindow.Show();
+
+            this.Close();
+        }
+
+        public void uxButtonEditCouplets_Click(object sender, RoutedEventArgs e)
+        {
+            var coupletWindow = new CoupletWindow();
+            Application.Current.MainWindow = coupletWindow;
+            coupletWindow.Show();
+
+            this.Close();
+        }
+
+        public void uxButtonViewCouplets_Click(object sender, RoutedEventArgs e)
+        {
+            var coupletWindow = new CoupletWindow();
+            Application.Current.MainWindow = coupletWindow;
+            coupletWindow.Show();
+
+            this.Close();
+        }
+
+        public void uxRefreshCouplets_Click(object sender, RoutedEventArgs e)
+        {
+            CoupletWindow coupletWindow = new CoupletWindow();
+
+            _coupletViewModel.LoadCouplets();
+            _mainViewModel.LoadRecents();
+            coupletWindow.uxList.DataContext = MainViewModel;
+
+            coupletWindow.uxList.ItemsSource = CoupletViewModel.Recents;
+            coupletWindow.uxCoupletRecent.Content = MainViewModel.MostRecentCouplet.RecentContent;
+        }
+
+        public void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (MessageBox.Show($"Are you sure you'd like to delete this poem?", "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                CoupletWindow coupletWindow = new CoupletWindow();
+
+                Main.Recent item = (Main.Recent)coupletWindow.uxList.Items.CurrentItem;
+                string content = item.RecentContent;
+
+                Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == content).SingleOrDefault();
+                Repository.Recents.Recent finallyDelete = deleteRecent.ToRepositoryModel();
+
+                Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
+                getRecent.Delete(finallyDelete);
+
+                MessageBox.Show("Okay, poem has been deleted.");
+            }
+            else { };
+        }
+
+        public void uxCoupletList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (MessageBox.Show($"Are you sure you'd like to delete this poem?", "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                MainWindow mainWindow = new MainWindow();
+
+                Main.Recent item = (Main.Recent)mainWindow.uxCoupletList.Items.CurrentItem;
+                string content = item.RecentContent;
+
+                Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == content).SingleOrDefault();
+                Repository.Recents.Recent finallyDelete = deleteRecent.ToRepositoryModel();
+
+                Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
+                getRecent.Delete(finallyDelete);
+
+                MessageBox.Show("Okay, poem has been deleted.");
+            }
+            else { };
+        }
+
+        public void uxRefreshRecentCouplets_Click(object sender, RoutedEventArgs e)
+        {
+            CoupletWindow coupletWindow = new CoupletWindow();
+
+            _mainViewModel.LoadRecents();
+            coupletWindow.uxCoupletRecent.DataContext = MainViewModel.Recents;
+
+            coupletWindow.uxCoupletRecent.Content = MainViewModel.MostRecentCouplet.RecentContent;
+            coupletWindow.uxExpanderRecentCoupletWindow.IsExpanded = true;
+        }
+        #endregion
+
+        #region haiku events
         public void uxButtonGenerateHaiku_Click(object sender, RoutedEventArgs e)
         {
             string returnRecent = GenerateRandom.RandomHaiku;
@@ -128,6 +158,109 @@ namespace Lorry
             Application.Current.MainWindow = haikuWindow;
             mainWindow.uxExpanderRecent.IsExpanded = true;
         }
+
+        public void uxButtonEditHaikus_Click(object sender, RoutedEventArgs e)
+        {
+            var haikuWindow = new HaikuWindow();
+            Application.Current.MainWindow = haikuWindow;
+            haikuWindow.Show();
+
+            this.Close();
+        }
+
+        public void uxButtonViewHaikus_Click(object sender, RoutedEventArgs e)
+        {
+            var haikuWindow = new HaikuWindow();
+            Application.Current.MainWindow = haikuWindow;
+            haikuWindow.Show();
+
+            this.Close();
+        }
+
+        public void uxFileNewHaiku_Click(object sender, RoutedEventArgs e)
+        {
+            var haikuWindow = new HaikuWindow();
+            Application.Current.MainWindow = haikuWindow;
+            haikuWindow.Show();
+
+            this.Close();
+        }
+
+        public void uxRefreshHaikus_Click(object sender, RoutedEventArgs e)
+        {
+            HaikuWindow haikuWindow = new HaikuWindow();
+
+            _haikuViewModel.LoadHaikus();
+            _mainViewModel.LoadRecents();
+
+            haikuWindow.uxList.ItemsSource = HaikuViewModel.Haikus;
+            haikuWindow.uxHaikuRecent.Content = MainViewModel.MostRecentHaiku.RecentContent;
+        }
+
+        public void uxHaikuList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (MessageBox.Show($"Are you sure you'd like to delete this poem?", "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                MainWindow mainWindow = new MainWindow();
+
+                Main.Recent item = (Main.Recent)mainWindow.uxHaikuList.Items.CurrentItem;
+                string content = item.RecentContent;
+
+                Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == content).SingleOrDefault();
+                Repository.Recents.Recent finallyDelete = deleteRecent.ToRepositoryModel();
+
+                Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
+                getRecent.Delete(finallyDelete);
+
+                MessageBox.Show("Okay, poem has been deleted.");
+            }
+            else { };
+        }
+        #endregion
+
+        #region main window events
+        public void uxFileDashboard_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = new MainWindow();
+            Application.Current.MainWindow = mainWindow;
+            mainWindow.Show();
+
+            this.Close();
+        }
+
+        public void uxFileExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        public void uxRefreshRecent_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+
+            _mainViewModel.LoadRecents();
+            mainWindow.uxRecentPoem.DataContext = MainViewModel.Recents;
+            mainWindow.uxHaikuList.DataContext = MainViewModel.Recents;
+            mainWindow.uxCoupletList.DataContext = MainViewModel.Recents;
+
+            mainWindow.uxRecentPoem.Content = MainViewModel.MostRecent.RecentContent;
+            mainWindow.uxHaikuList.ItemsSource = MainViewModel.Recents.Where(t => t.RecentType == "haiku");
+            mainWindow.uxCoupletList.ItemsSource = MainViewModel.Recents.Where(t => t.RecentType == "couplet");
+
+            mainWindow.uxExpanderRecent.IsExpanded = true;
+            mainWindow.uxCoupletExpander.IsExpanded = true;
+            mainWindow.uxHaikuExpander.IsExpanded = true;
+        }
+
+        public void uxFileReload_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+
+            _mainViewModel.LoadRecents();
+            mainWindow.uxRecentPoem.DataContext = MainViewModel.Recents;
+
+            mainWindow.uxRecentPoem.Content = MainViewModel.MostRecent.RecentContent;
+        }
+        #endregion
 
         #region unused event handlers
         public void uxFileNew_Click(object sender, RoutedEventArgs e)
@@ -183,4 +316,3 @@ namespace Lorry
         #endregion
     }
 }
-

@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Haiku" Height="450" Width="800">
+        Title="Haiku" Height="450" Width="900">
 
         <DockPanel>
             <StackPanel DockPanel.Dock="Top">
@@ -32,22 +32,23 @@
                 </Menu>
             </StackPanel>
 
-            <StackPanel DockPanel.Dock="Left">
-                <Button x:Name="uxButtonGenerateHaiku" Content="Generate!" Click="uxButtonGenerateHaiku_Click" Width="155"/>
+            <StackPanel DockPanel.Dock="Left" Width="300">
+            <Separator Margin="5"/>
+            <Button x:Name="uxButtonGenerateHaiku" Content="Generate!" Click="uxButtonGenerateHaiku_Click" Width="155"/>
             </StackPanel>
 
-            <StackPanel DockPanel.Dock="Right">
+            <StackPanel DockPanel.Dock="Left" Width="300">
             <Label x:Name="uxRecentHaikuLabel" Content="Recent" FontWeight="Bold" FontSize="18" Width="95"/>
 
-            <Expander x:Name="uxExpanderRecentHaikuWindow" Width="315">
-                <Label x:Name="uxHaikuRecent" Content="" Width="315"/>
+            <Expander x:Name="uxExpanderRecentHaikuWindow" Width="300">
+                <Label x:Name="uxHaikuRecent" Content="" Width="300"/>
             </Expander>
                 
             <Separator Margin="5"/>
 
             <Label x:Name="uxPossibleLinesLabel" Content="Possible Lines" Width="95"/>
-                <Expander Width="315">
-                    <ListView x:Name="uxList" Width="315" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <Expander Width="300">
+                    <ListView x:Name="uxList" Width="300" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="" DisplayMemberBinding="{Binding HaikuContent}"/>
@@ -56,6 +57,12 @@
                     </ListView>
                 </Expander>
             </StackPanel>
+
+        <StackPanel DockPanel.Dock="Right" Width="300">
+            <Separator Margin="5"/>
+            <Button x:Name="uxRefreshHaikus" Content="Refresh" Click="uxRefreshHaikus_Click" Width="155"/>
+        </StackPanel>
+
 
     </DockPanel>
 </src:Events>

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace Lorry
@@ -8,7 +10,11 @@ namespace Lorry
     /// </summary>
     public partial class MainWindow : Events
     {
+        #region set the view model context
         private Lorry.Main.MainListViewModel _mainViewModel = new Lorry.Main.MainListViewModel();
+        public Lorry.Main.MainListViewModel MainViewModel { get { return _mainViewModel; } }
+        public ObservableCollection<Lorry.Main.Recent> Recents { get; set; }
+        #endregion
 
         public MainWindow()
         {
@@ -16,26 +22,10 @@ namespace Lorry
             this.DataContext = MainViewModel;
 
             uxRecentPoem.Content = MainViewModel.MostRecent.RecentContent;
+            uxCoupletList.DataContext = Recents;
+            uxHaikuList.DataContext = Recents;
+            uxCoupletList.ItemsSource = MainViewModel.Recents.Where(t => t.RecentType == "couplet");
+            uxHaikuList.ItemsSource = MainViewModel.Recents.Where(t => t.RecentType == "haiku");
         }
-
-        public Lorry.Main.MainListViewModel MainViewModel { get { return _mainViewModel; } }
-
-        private void uxFileReload_Click(object sender, RoutedEventArgs e)
-        {
-            _mainViewModel.LoadRecents();
-            uxRecentPoem.DataContext = MainViewModel.Recents;
-
-            uxRecentPoem.Content = MainViewModel.MostRecent.RecentContent;
-        }
-
-        private void uxRefreshRecent_Click(object sender, RoutedEventArgs e)
-        {
-            _mainViewModel.LoadRecents();
-            uxRecentPoem.DataContext = MainViewModel.Recents;
-
-            uxRecentPoem.Content = MainViewModel.MostRecent.RecentContent;
-            uxExpanderRecent.IsExpanded = true;
-        }
-
     }
 }

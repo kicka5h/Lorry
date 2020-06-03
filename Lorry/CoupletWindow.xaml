@@ -9,7 +9,7 @@
         
             
         mc:Ignorable="d"
-        Title="Couplet" Height="450" Width="800">
+        Title="Couplet" Height="450" Width="900">
 
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
@@ -19,8 +19,6 @@
                     <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click">
                         <MenuItem x:Name="uxFileNewHaiku" Header="_Haiku" Click="uxFileNewHaiku_Click"/>
                         <MenuItem x:Name="uxFileNewCouplet" Header="_Couplet" Click="uxFileNewCouplet_Click"/>
-                        <Separator/>
-                        <MenuItem x:Name="uxFileReload" Header="_Reload Couplets" Click="uxFileReload_Click"/>
                     </MenuItem>
                     <MenuItem x:Name="uxFileOpen" Header="_Open" Click="uxFileOpen_Click"/>
                     <MenuItem x:Name="uxFileExit" Header="_Exit" Click="uxFileExit_Click"/>
@@ -36,23 +34,27 @@
             </Menu>
         </StackPanel>
 
-        <StackPanel DockPanel.Dock="Left">
+        <StackPanel DockPanel.Dock="Bottom" Height="115">
+            <Button x:Name="uxRefreshRecentCouplets" Content="Refresh" Click="uxRefreshRecentCouplets_Click" Width="155" />
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Left" Width="300">
             <Separator Margin="5"/>
             <Button x:Name="uxButtonGenerateCouplet" Content="Generate!" Click="uxButtonGenerateCouplet_Click" Width="155"/>
         </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel DockPanel.Dock="Right">
+            <StackPanel DockPanel.Dock="Right" Width="300">
                 <Label x:Name="uxRecentCoupletLabel" Content="Recent" FontWeight="Bold" FontSize="18" Width="95" />
 
-                <Expander x:Name="uxExpanderRecentCoupletWindow" Width="315">
-                    <Label x:Name="uxCoupletRecent"  Content="" Width="315"/>
+                <Expander x:Name="uxExpanderRecentCoupletWindow" Width="300">
+                    <Label x:Name="uxCoupletRecent"  Content="" Width="300"/>
                 </Expander>
 
                 <Separator Margin="5"/>
-                <Label x:Name="uxPossibleLinesLabel" Content="All Couplets" FontWeight="Bold" FontSize="18" Width="118" />
-                <Expander Width="315">
-                    <ListView x:Name="uxList" ItemsSource="{Binding Recents}" MouseDoubleClick="ListViewItem_MouseDoubleClick" Width="315">
+                <Label x:Name="uxPossibleLinesLabel" Content="All Couplets" FontWeight="Bold" FontSize="18" Width="115" />
+                <Expander Width="300">
+                    <ListView x:Name="uxList" ItemsSource="{Binding Recents}" MouseDoubleClick="ListViewItem_MouseDoubleClick" Width="300">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
@@ -62,9 +64,13 @@
                         </ListView.View>
                     </ListView>
                 </Expander>
-
             </StackPanel>
         </ScrollViewer>
+
+        <StackPanel DockPanel.Dock="Right" Width="300">
+            <Separator Margin="5"/>
+            <Button x:Name="uxRefreshCouplets" Content="Refresh" Click="uxRefreshCouplets_Click" Width="155"/>
+        </StackPanel>
 
     </DockPanel>
 </src:Events>

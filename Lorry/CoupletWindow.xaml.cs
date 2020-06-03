@@ -24,13 +24,14 @@ namespace Lorry
     /// </summary>
     public partial class CoupletWindow : Events
     {
+        #region set the view model context
         private Lorry.Couplets.CoupletListViewModel _coupletViewModel = new Lorry.Couplets.CoupletListViewModel();
 
         private Lorry.Main.MainListViewModel _mainViewModel = new Lorry.Main.MainListViewModel();
         public new Lorry.Main.MainListViewModel MainViewModel { get { return _mainViewModel; } }
         public new Lorry.Couplets.CoupletListViewModel CoupletViewModel { get { return _coupletViewModel; } }
-
         public ObservableCollection<Lorry.Main.Recent> Recents { get; set; }
+        #endregion
 
         public CoupletWindow()
         {
@@ -40,34 +41,6 @@ namespace Lorry
             uxList.DataContext = Recents;
             uxList.ItemsSource = MainViewModel.Recents.Where(t => t.RecentType == "couplet");
             uxCoupletRecent.Content = MainViewModel.MostRecentCouplet.RecentContent;
-        }
-
-        private void uxFileReload_Click(object sender, RoutedEventArgs e)
-        {
-            _coupletViewModel.LoadCouplets();
-            _mainViewModel.LoadRecents();
-            uxList.DataContext = MainViewModel;
-
-            uxList.ItemsSource = CoupletViewModel.Recents;
-            uxCoupletRecent.Content = MainViewModel.MostRecentCouplet.RecentContent;
-        }
-
-        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (MessageBox.Show($"Are you sure you'd like to delete this poem?", "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {
-                Main.Recent item = (Main.Recent)uxList.Items.CurrentItem;
-                string content = item.RecentContent;
-
-                Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == content).SingleOrDefault();
-                Repository.Recents.Recent finallyDelete = deleteRecent.ToRepositoryModel();
-
-                Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
-                getRecent.Delete(finallyDelete);
-
-                MessageBox.Show("Okay, poem has been deleted.");
-            }
-            else { };
         }
     }
 }
