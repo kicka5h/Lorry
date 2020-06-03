@@ -122,7 +122,6 @@ namespace Lorry.Helpers
                 ok.Content = okbuttontext;
                 ok.HorizontalAlignment = HorizontalAlignment.Center;
                 sp1.Children.Add(ok);
-
             }
 
             void Box_Closing(object sender, System.ComponentModel.CancelEventArgs e)
