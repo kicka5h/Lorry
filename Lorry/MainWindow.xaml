@@ -44,6 +44,9 @@
                 
                 <Label x:Name="uxAllCoupletsLabel" Content="All Couplets" FontWeight="Bold" FontSize="18" Width="115" />
                 <Expander x:Name="uxCoupletExpander" Width="300">
+                    <Expander.Header>
+                        <TextBlock Foreground="Gray" Text="Click here to view your couplets"/>
+                    </Expander.Header>
                     <ListView x:Name="uxCoupletList" ItemsSource="{Binding Recents}" MouseDoubleClick="uxCoupletList_MouseDoubleClick" Width="300">
                         <ListView.View>
                             <GridView>
@@ -62,6 +65,9 @@
                 <Label x:Name="uxRecentLabel" FontWeight="Bold" FontSize="18" Content="Recent" Loaded="uxRecentLabel_Loaded" Width="82" RenderTransformOrigin="0.938,0.534"/>
 
                 <Expander x:Name="uxExpanderRecent" Width="300">
+                    <Expander.Header>
+                        <TextBlock Foreground="Gray" Text="Click to view your most recent poem"/>
+                    </Expander.Header>
                     <Label x:Name="uxRecentPoem" Content="" Width="300"/>
                 </Expander>
             </StackPanel>
@@ -78,6 +84,9 @@
 
                 <Label x:Name="uxAllHaikusLabel" Content="All Haikus" FontWeight="Bold" FontSize="18" Width="115" />
                 <Expander x:Name="uxHaikuExpander" Width="300">
+                    <Expander.Header>
+                        <TextBlock Foreground="Gray" Text="Clicke here to view your Haikus"/>
+                    </Expander.Header>
                     <ListView x:Name="uxHaikuList" ItemsSource="{Binding Recents}" MouseDoubleClick="uxHaikuList_MouseDoubleClick" Width="300">
                         <ListView.View>
                             <GridView>

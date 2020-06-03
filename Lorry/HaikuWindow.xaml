@@ -15,8 +15,6 @@
                         <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click">
                             <MenuItem x:Name="uxFileNewHaiku" Header="_Haiku" Click="uxFileNewHaiku_Click"/>
                             <MenuItem x:Name="uxFileNewCouplet" Header="_Couplet" Click="uxFileNewCouplet_Click"/>
-                            <Separator/>
-                            <MenuItem x:Name="uxFileReload" Header="_Reload Couplets" Click="uxFileReload_Click"/>
                         </MenuItem>
                         <MenuItem x:Name="uxFileOpen" Header="_Open" Click="uxFileOpen_Click"/>
                         <MenuItem x:Name="uxFileExit" Header="_Exit" Click="uxFileExit_Click"/>
@@ -32,6 +30,10 @@
                 </Menu>
             </StackPanel>
 
+        <StackPanel DockPanel.Dock="Bottom">
+            <Button x:Name="uxRefreshHaikus" Content="Refresh" Click="uxRefreshHaikus_Click" Width="155"/>
+        </StackPanel>
+
             <StackPanel DockPanel.Dock="Left" Width="300">
             <Separator Margin="5"/>
             <Button x:Name="uxButtonGenerateHaiku" Content="Generate!" Click="uxButtonGenerateHaiku_Click" Width="155"/>
@@ -41,13 +43,19 @@
             <Label x:Name="uxRecentHaikuLabel" Content="Recent" FontWeight="Bold" FontSize="18" Width="95"/>
 
             <Expander x:Name="uxExpanderRecentHaikuWindow" Width="300">
+                <Expander.Header>
+                    <TextBlock Foreground="Gray" Text="Click to view most recent Haiku"/>
+                </Expander.Header>
                 <Label x:Name="uxHaikuRecent" Content="" Width="300"/>
             </Expander>
                 
             <Separator Margin="5"/>
 
-            <Label x:Name="uxPossibleLinesLabel" Content="Possible Lines" Width="95"/>
+            <Label x:Name="uxPossibleLinesLabel" Content="All Haikus" FontWeight="Bold" FontSize="18" Width="95"/>
                 <Expander Width="300">
+                <Expander.Header>
+                    <TextBlock Foreground="Gray" Text="Click to view your Haikus"/>
+                </Expander.Header>
                     <ListView x:Name="uxList" Width="300" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListView.View>
                             <GridView>
@@ -60,9 +68,8 @@
 
         <StackPanel DockPanel.Dock="Right" Width="300">
             <Separator Margin="5"/>
-            <Button x:Name="uxRefreshHaikus" Content="Refresh" Click="uxRefreshHaikus_Click" Width="155"/>
+            <Button x:Name="uxButtonAddCustomHaiku" Content="Add my own!" Width="155" Click="uxButtonAddCustomHaiku_Click" />
         </StackPanel>
-
 
     </DockPanel>
 </src:Events>

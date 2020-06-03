@@ -38,8 +38,8 @@ namespace Lorry
             InitializeComponent();
 
             DataContext = Recents;
-            uxList.DataContext = Recents;
-            uxList.ItemsSource = MainViewModel.Recents.Where(t => t.RecentType == "couplet");
+            uxCoupletList.DataContext = Recents;
+            uxCoupletList.ItemsSource = MainViewModel.Recents.Where(t => t.RecentType == "couplet");
             uxCoupletRecent.Content = MainViewModel.MostRecentCouplet.RecentContent;
         }
     }

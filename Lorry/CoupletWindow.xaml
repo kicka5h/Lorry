@@ -35,7 +35,7 @@
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Height="115">
-            <Button x:Name="uxRefreshRecentCouplets" Content="Refresh" Click="uxRefreshRecentCouplets_Click" Width="155" />
+            <Button x:Name="uxRefreshRecentCouplets" Content="Refresh" Click="uxRefreshCouplets_Click" Width="155" />
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Left" Width="300">
@@ -48,13 +48,19 @@
                 <Label x:Name="uxRecentCoupletLabel" Content="Recent" FontWeight="Bold" FontSize="18" Width="95" />
 
                 <Expander x:Name="uxExpanderRecentCoupletWindow" Width="300">
+                    <Expander.Header>
+                        <TextBlock Foreground="Gray" Text="Click to view your most recent couplet" />
+                    </Expander.Header>
                     <Label x:Name="uxCoupletRecent"  Content="" Width="300"/>
                 </Expander>
 
                 <Separator Margin="5"/>
                 <Label x:Name="uxPossibleLinesLabel" Content="All Couplets" FontWeight="Bold" FontSize="18" Width="115" />
                 <Expander Width="300">
-                    <ListView x:Name="uxList" ItemsSource="{Binding Recents}" MouseDoubleClick="ListViewItem_MouseDoubleClick" Width="300">
+                    <Expander.Header>
+                        <TextBlock Foreground="Gray" Text="Click to view your couplets"/>
+                    </Expander.Header>
+                    <ListView x:Name="uxCoupletList" ItemsSource="{Binding Recents}" MouseDoubleClick="uxCoupletList_MouseDoubleClick" Width="300">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
@@ -69,7 +75,7 @@
 
         <StackPanel DockPanel.Dock="Right" Width="300">
             <Separator Margin="5"/>
-            <Button x:Name="uxRefreshCouplets" Content="Refresh" Click="uxRefreshCouplets_Click" Width="155"/>
+            <Button x:Name="uxButtonAddCustomCouplet" Content="Add My Own!" Click="uxButtonAddCustomCouplet_Click" Width="155"/>
         </StackPanel>
 
     </DockPanel>
