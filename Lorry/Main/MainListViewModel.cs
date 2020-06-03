@@ -43,7 +43,7 @@ namespace Lorry.Main
 
             get
             {
-                Main.Recent mostRecent = _recents.OrderByDescending(t => t.RecentType).FirstOrDefault();
+                Main.Recent mostRecent = _recents.OrderByDescending(t => t.RecentType).LastOrDefault();
 
                 if (mostRecent.RecentType == "couplet") { return mostRecent; }
                 else { return mostRecent; }

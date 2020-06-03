@@ -91,14 +91,11 @@ namespace Lorry
 
         public void uxRefreshCouplets_Click(object sender, RoutedEventArgs e)
         {
-            CoupletWindow coupletWindow = new CoupletWindow();
+            var coupletWindow = new CoupletWindow();
+            Application.Current.MainWindow = coupletWindow;
+            coupletWindow.Show();
 
-            _coupletViewModel.LoadCouplets();
-            _mainViewModel.LoadRecents();
-            coupletWindow.uxCoupletList.DataContext = MainViewModel;
-
-            coupletWindow.uxCoupletList.ItemsSource = CoupletViewModel.Recents;
-            coupletWindow.uxCoupletRecent.Content = MainViewModel.MostRecentCouplet.RecentContent;
+            this.Close();
         }
 
         public void uxCoupletList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)

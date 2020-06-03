@@ -38,9 +38,12 @@ namespace Lorry
             InitializeComponent();
 
             DataContext = Recents;
-            uxCoupletList.DataContext = Recents;
+            uxCoupletList.DataContext = MainViewModel.Recents;
+            Lorry.Main.Recent recentCouplet = MainViewModel.Recents.Where(t => t.RecentType == "couplet").LastOrDefault();
+            uxCoupletRecent.DataContext = recentCouplet.RecentContent;
+
             uxCoupletList.ItemsSource = MainViewModel.Recents.Where(t => t.RecentType == "couplet");
-            uxCoupletRecent.Content = MainViewModel.MostRecentCouplet.RecentContent;
+            uxCoupletRecent.Content = recentCouplet.RecentContent;
         }
     }
 }

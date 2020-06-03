@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,10 +29,18 @@ namespace Lorry
         public HaikuWindow()
         {
             InitializeComponent();
-            this.DataContext = HaikuViewModel.Haikus;
-            uxList.ItemsSource = HaikuViewModel.Haikus;
+            uxHaikuList.DataContext = MainViewModel.Recents;
+            Lorry.Main.Recent recentHaiku = MainViewModel.Recents.Where(t => t.RecentType == "haiku").LastOrDefault();
+            uxHaikuRecent.DataContext = recentHaiku.RecentContent;
 
-            uxHaikuRecent.Content = MainViewModel.MostRecentHaiku.RecentContent;
+            uxHaikuList.ItemsSource = MainViewModel.Recents.Where(t => t.RecentType == "haiku");
+
+            uxHaikuRecent.Content = recentHaiku.RecentContent;
+        }
+
+        private void uxHaikuList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

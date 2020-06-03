@@ -39,32 +39,34 @@
             <Button x:Name="uxButtonGenerateHaiku" Content="Generate!" Click="uxButtonGenerateHaiku_Click" Width="155"/>
             </StackPanel>
 
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel DockPanel.Dock="Left" Width="300">
-            <Label x:Name="uxRecentHaikuLabel" Content="Recent" FontWeight="Bold" FontSize="18" Width="95"/>
+                <Label x:Name="uxRecentHaikuLabel" Content="Recent" FontWeight="Bold" FontSize="18" Width="95"/>
 
-            <Expander x:Name="uxExpanderRecentHaikuWindow" Width="300">
-                <Expander.Header>
-                    <TextBlock Foreground="Gray" Text="Click to view most recent Haiku"/>
-                </Expander.Header>
-                <Label x:Name="uxHaikuRecent" Content="" Width="300"/>
-            </Expander>
-                
-            <Separator Margin="5"/>
+                <Expander x:Name="uxExpanderRecentHaikuWindow" Width="300">
+                    <Expander.Header>
+                        <TextBlock Foreground="Gray" Text="Click to view most recent Haiku"/>
+                    </Expander.Header>
+                    <Label x:Name="uxHaikuRecent" Content="" Width="300"/>
+                </Expander>
 
-            <Label x:Name="uxPossibleLinesLabel" Content="All Haikus" FontWeight="Bold" FontSize="18" Width="95"/>
+                <Separator Margin="5"/>
+
+                <Label x:Name="uxPossibleLinesLabel" Content="All Haikus" FontWeight="Bold" FontSize="18" Width="95"/>
                 <Expander Width="300">
-                <Expander.Header>
-                    <TextBlock Foreground="Gray" Text="Click to view your Haikus"/>
-                </Expander.Header>
-                    <ListView x:Name="uxList" Width="300" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <Expander.Header>
+                        <TextBlock Foreground="Gray" Text="Click to view your Haikus"/>
+                    </Expander.Header>
+                    <ListView x:Name="uxHaikuList" ItemsSource="{Binding Recents}" MouseDoubleClick="uxHaikuList_MouseDoubleClick" Width="300">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="" DisplayMemberBinding="{Binding HaikuContent}"/>
+                                <GridViewColumn Header="" DisplayMemberBinding="{Binding RecentContent}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </Expander>
             </StackPanel>
+        </ScrollViewer>
 
         <StackPanel DockPanel.Dock="Right" Width="300">
             <Separator Margin="5"/>
