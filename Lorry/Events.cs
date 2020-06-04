@@ -31,7 +31,7 @@ namespace Lorry
         public new Lorry.Main.MainListViewModel MainViewModel { get { return _mainViewModel; } }
         #endregion
 
-        private string classContent;
+        public static string classContent;
 
         #region couplet events
         public void uxCoupletList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -43,22 +43,8 @@ namespace Lorry
             Main.Recent item = (Main.Recent)mainWindow.uxCoupletList.Items.CurrentItem;
             classContent = item.RecentContent;
 
-            //Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == classContent).SingleOrDefault();
-
             EditPoem editPoem = new EditPoem();
             editPoem.Show();
-
-            /*
-            if (MessageBox.Show($"Are you sure you'd like to delete this poem? \n {_content}", "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {
-                Repository.Recents.Recent finallyDelete = deleteRecent.ToRepositoryModel();
-
-                getRecent.Delete(finallyDelete);
-
-                MessageBox.Show("Okay, poem has been deleted.");
-            }
-            else { };
-            */
         }
 
         public void uxDeleteEditedPoem_Click(object sender, RoutedEventArgs e)
@@ -133,28 +119,6 @@ namespace Lorry
 
             this.Close();
         }
-
-        /*
-        public void uxCoupletList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (MessageBox.Show($"Are you sure you'd like to delete this poem?", "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {
-                MainWindow mainWindow = new MainWindow();
-                Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
-
-                Main.Recent item = (Main.Recent)mainWindow.uxCoupletList.Items.CurrentItem;
-                string content = item.RecentContent;
-
-                Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == content).SingleOrDefault();
-                Repository.Recents.Recent finallyDelete = deleteRecent.ToRepositoryModel();
-
-                getRecent.Delete(finallyDelete);
-
-                MessageBox.Show("Okay, poem has been deleted.");
-            }
-            else { };
-        }
-        */
 
         public void uxRefreshRecentCouplets_Click(object sender, RoutedEventArgs e)
         {
@@ -238,20 +202,13 @@ namespace Lorry
         public void uxHaikuList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
+            Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
 
             Main.Recent item = (Main.Recent)mainWindow.uxHaikuList.Items.CurrentItem;
-            string content = item.RecentContent;
+            classContent = item.RecentContent;
 
-            if (MessageBox.Show($"Are you sure you'd like to delete this poem?", "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {
-                Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == content).SingleOrDefault();
-
-                Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
-                getRecent.Delete(deleteRecent.ToRepositoryModel());
-
-                MessageBox.Show("Okay, poem has been deleted.");
-            }
-            else { };
+            EditPoem editPoem = new EditPoem();
+            editPoem.Show();
         }
         #endregion
 
@@ -279,11 +236,6 @@ namespace Lorry
             this.Close();
         }
         #endregion
-
-        private string GetContent()
-        {
-            return classContent;
-        }
 
         #region unused event handlers
         public void uxFileNew_Click(object sender, RoutedEventArgs e)
