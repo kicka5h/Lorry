@@ -21,12 +21,8 @@ namespace Lorry
         public EditPoem()
         {
             InitializeComponent();
+
+            uxTextBoxEditPoem.Text = Events.classContent;
         }
-
-        private void uxSaveEditedButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }

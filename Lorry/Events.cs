@@ -47,17 +47,6 @@ namespace Lorry
             editPoem.Show();
         }
 
-        public void uxDeleteEditedPoem_Click(object sender, RoutedEventArgs e)
-        {
-            Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
-            Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == classContent).SingleOrDefault();
-
-            Repository.Recents.Recent finallyDelete = deleteRecent.ToRepositoryModel();
-            getRecent.Delete(finallyDelete);
-
-            this.Close();
-        }
-
         public void uxButtonAddCustomCouplet_Click(object sender, RoutedEventArgs e)
         {
             string inputRead = new Lorry.Helpers.GetInput.InputBox("Add your own").ShowDialog();
@@ -213,6 +202,33 @@ namespace Lorry
         #endregion
 
         #region main window events
+        public void uxDeleteEditedPoem_Click(object sender, RoutedEventArgs e)
+        {
+            Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
+            Main.Recent deleteRecent = MainViewModel.Recents.Where(t => t.RecentContent == classContent).SingleOrDefault();
+
+            Repository.Recents.Recent finallyDelete = deleteRecent.ToRepositoryModel();
+            getRecent.Delete(finallyDelete);
+
+            this.Close();
+        }
+
+        public void uxSaveEditedButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditPoem editPoem = new EditPoem();
+            Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
+            Main.Recent newRecent = MainViewModel.Recents.Where(t => t.RecentContent == classContent).SingleOrDefault();
+
+            Lorry.Repository.Recents.Recent updateRecent = new Repository.Recents.Recent();
+            updateRecent.RecentContent = editPoem.uxTextBoxEditPoem.Text;
+            updateRecent.RecentId = newRecent.RecentId;
+
+            Repository.Recents.Recent updatedRecent = newRecent.ToRepositoryModel();
+            getRecent.Update(updatedRecent);
+
+            this.Close();
+        }
+
         public void uxFileDashboard_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = new MainWindow();
@@ -289,5 +305,13 @@ namespace Lorry
 
         }
         #endregion
+
+        public string EventContent
+        {
+            get
+            {
+                return classContent;
+            }
+        }
     }
 }

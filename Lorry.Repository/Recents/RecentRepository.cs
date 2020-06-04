@@ -62,7 +62,6 @@ namespace Lorry.Repository.Recents
                 DatabaseManager.Instance.SaveChanges();
                 return updated.ToRepositoryModel();
             }
-
             return original.ToRepositoryModel();
         }
     }
