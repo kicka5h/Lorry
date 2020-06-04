@@ -121,7 +121,7 @@ namespace Lorry.Helpers
                 List<Couplets.Couplet> coupletList = CoupletViewModel.Couplets.ToList().GetTwoRandomCouplets();
                 string outputLines;
 
-                outputLines = String.Format($"{coupletList[0].CoupletContent}{Environment.NewLine}{coupletList[1].CoupletContent}{Environment.NewLine}");
+                outputLines = String.Format($"{coupletList[0].CoupletContent}{Environment.NewLine}{coupletList[1].CoupletContent}");
                 return outputLines;
             }
         }

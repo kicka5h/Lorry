@@ -19,7 +19,7 @@ namespace Lorry.Repository.Couplets
 {
 
     public class CoupletRepository : IDatabaseRepository<Lorry.Repository.Couplets.Couplet>
-    { 
+    {
 
         public List<Couplet> GetAll()
         {
@@ -28,7 +28,7 @@ namespace Lorry.Repository.Couplets
 
         public Couplet Get(int key)
         {
-            throw new NotImplementedException();            
+            throw new NotImplementedException();
         }
 
         public Couplet Delete(Couplet deleteObject)
@@ -36,11 +36,8 @@ namespace Lorry.Repository.Couplets
             var databaseObject = deleteObject.ToDbModel();
             var original = DatabaseManager.Instance.Recent.Find(databaseObject.CoupletId);
 
-            if (original != null)
-            {
-                DatabaseManager.Instance.Recent.Remove(original);
-                DatabaseManager.Instance.SaveChanges();
-            }
+            DatabaseManager.Instance.Recent.Remove(original);
+            DatabaseManager.Instance.SaveChanges();
 
             return databaseObject.ToRepositoryModel();
         }

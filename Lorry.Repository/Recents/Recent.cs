@@ -29,7 +29,7 @@ namespace Lorry.Repository.Recents
         }
 
         /// <summary>
-        /// Converts Lorry.Database.Couplet object to Lorry.Repository.Models.Couplet object.
+        /// Converts Lorry.Database.Couplet object to Lorry.Repository.Couplets.Couplet object.
         /// </summary>
         /// <param name="databaseObject"></param>
         /// <returns></returns>

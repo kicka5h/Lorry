@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Lorry"
              StartupUri="MainWindow.xaml"
              ShutdownMode="OnLastWindowClose">
+    
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

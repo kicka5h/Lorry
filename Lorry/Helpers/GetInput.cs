@@ -12,7 +12,6 @@ namespace Lorry.Helpers
     {
         public class InputBox
         {
-
             Window Box = new Window();//window for the inputbox
             FontFamily font = new FontFamily("Tahoma");//font for the whole inputbox
             int FontSize = 30;//fontsize for the input
@@ -127,7 +126,8 @@ namespace Lorry.Helpers
             void Box_Closing(object sender, System.ComponentModel.CancelEventArgs e)
             {
                 if (!clicked)
-                    Box.Close();
+                    //Box.Close();
+                    Box.Visibility = Visibility.Hidden;
             }
 
             private void input_MouseDown(object sender, MouseEventArgs e)

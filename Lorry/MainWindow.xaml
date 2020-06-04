@@ -40,7 +40,7 @@
                 <Separator Margin="5"/>
                 <Button x:Name="uxButtonViewCouplets" Content="View Couplets" Click="uxButtonViewCouplets_Click" Width="155"/>
                 <Separator Margin="5" />
-                <Button x:Name="uxButtonEditCouplets" Content="Edit Couplets" Click="uxButtonEditCouplets_Click" Width="155"/>
+                <Button x:Name="uxButtonAddCustomCouplet" Content="Add my own!" Click="uxButtonAddCustomCouplet_Click" Width="155"/>
                 <Separator Margin="5"/>
                 
                 <Label x:Name="uxAllCoupletsLabel" Content="All Couplets" FontWeight="Bold" FontSize="18" Width="115" />
@@ -80,7 +80,7 @@
                 <Separator Margin="5"/>
                 <Button x:Name="uxButtonViewHaikus" Content="View Haikus" Click="uxButtonViewHaikus_Click" Width="155"/>
                 <Separator Margin="5"/>
-                <Button x:Name="uxButtonEditHaikus" Content="Edit Haikus" Click="uxButtonEditHaikus_Click" Width="155" />
+                <Button x:Name="uxButtonAddCustomHaiku" Content="Add my own!" Click="uxButtonAddCustomHaiku_Click" Width="155" />
                 <Separator Margin="5"/>
 
                 <Label x:Name="uxAllHaikusLabel" Content="All Haikus" FontWeight="Bold" FontSize="18" Width="115" />
