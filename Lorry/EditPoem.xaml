@@ -10,7 +10,7 @@
         >
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
-            <TextBox x:Name="uxTextBoxEditPoem" DataContext="{Binding RecentContent}" TextWrapping="Wrap" Width="203" Height="229"/>
+            <TextBox x:Name="uxTextBoxEditPoem" DataContext="{Binding RecentContent}" TextWrapping="Wrap" Width="203" Height="229" />
             <Button x:Name="uxSaveEditedPoem" Content="Save" Click="uxSaveEditedButton_Click" Width="99" />
         </StackPanel>
 

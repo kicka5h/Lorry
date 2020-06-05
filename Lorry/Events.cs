@@ -12,6 +12,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
 
@@ -32,6 +33,7 @@ namespace Lorry
         #endregion
 
         public static string classContent;
+        public static string inputContent;
 
         #region couplet events
         public void uxCoupletList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -219,12 +221,10 @@ namespace Lorry
             Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
             Main.Recent newRecent = MainViewModel.Recents.Where(t => t.RecentContent == classContent).SingleOrDefault();
 
-            Lorry.Repository.Recents.Recent updateRecent = new Repository.Recents.Recent();
-            updateRecent.RecentContent = editPoem.uxTextBoxEditPoem.Text;
-            updateRecent.RecentId = newRecent.RecentId;
+            newRecent.RecentContent = editPoem.uxTextBoxEditPoem.Text;
+            newRecent.RecentId = newRecent.RecentId;
 
-            Repository.Recents.Recent updatedRecent = newRecent.ToRepositoryModel();
-            getRecent.Update(updatedRecent);
+            MainViewModel.SaveRecent(newRecent);
 
             this.Close();
         }
@@ -305,13 +305,5 @@ namespace Lorry
 
         }
         #endregion
-
-        public string EventContent
-        {
-            get
-            {
-                return classContent;
-            }
-        }
     }
 }

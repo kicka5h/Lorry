@@ -60,5 +60,15 @@ namespace Lorry.Main
                 else { return mostRecent; }
             }
         }
+
+        public Lorry.Main.Recent SaveRecent(Lorry.Main.Recent inputObject)
+        {
+            Lorry.Repository.IDatabaseRepository<Repository.Recents.Recent> getRecent = new Lorry.Repository.Recents.RecentRepository();
+
+            if (inputObject.RecentId > 0)
+                return getRecent.Update(inputObject.ToRepositoryModel()).ToUIModel();
+            else
+                return getRecent.Insert(inputObject.ToRepositoryModel()).ToUIModel();
+        }
     }
 }
